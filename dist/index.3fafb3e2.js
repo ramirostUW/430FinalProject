@@ -1054,7 +1054,7 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
-  var _jsxFileName = "/mnt/c/info430/430finalproject/src/index.js";
+  var _jsxFileName = "C:\\Users\\Michael\\Info430\\430FinalProject\\src\\index.js";
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26272,31 +26272,92 @@ try {
   _parcelHelpers.defineInteropFlag(exports);
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _jsxFileName = "/mnt/c/info430/430finalproject/src/App.js";
+  require('bootstrap/dist/css/bootstrap.min.css');
+  var _jsxFileName = "C:\\Users\\Michael\\Info430\\430FinalProject\\src\\App.js";
   const App = () => {
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 5,
+          lineNumber: 7,
           columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 6,
+          lineNumber: 8,
           columnNumber: 7
         }
       }, "Info 430 Final Project"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 7,
+          lineNumber: 9,
           columnNumber: 7
         }
-      }, "By: Michael, Olivia, Pranav. and Ramiro"))
+      }, "By: Michael, Olivia, Pranav. and Ramiro"), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "col",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 10,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "row",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 11,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        className: "card",
+        style: {
+          width: "20%"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 12,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        className: "card-body",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 13,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
+        className: "card-title",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 14,
+          columnNumber: 15
+        }
+      }, "Card title"), /*#__PURE__*/_reactDefault.default.createElement("p", {
+        className: "card-text",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 15,
+          columnNumber: 14
+        }
+      }, "Some quick example text to build on the card title and make up the bulk of the card's content."), /*#__PURE__*/_reactDefault.default.createElement("a", {
+        href: "#",
+        className: "btn btn-primary",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 16,
+          columnNumber: 13
+        }
+      }, "Go somewhere"))))))
     );
   };
   _c = App;
@@ -26309,7 +26370,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5gA8y":[function(require,module,exports) {
+},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5GTF8":[function() {},{}],"5gA8y":[function(require,module,exports) {
 "use strict";
 
 exports.interopDefault = function (a) {
