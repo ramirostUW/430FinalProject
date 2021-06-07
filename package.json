@@ -11,18 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "bootstrap": "^5.0.1",
     "parcel": "^2.0.0-beta.2",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2"
-=======
-    "d3-fetch": "^3.0.1",
-    "parcel": "^2.0.0-beta.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "tedious": "^11.0.9"
->>>>>>> 07d7600818487e14941cd49f885b02a8575341ea
   }
 }

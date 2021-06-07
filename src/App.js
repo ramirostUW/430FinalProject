@@ -1,11 +1,6 @@
 import React from "react";
-<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-=======
-import { useFetch } from "./hooks/useFetch";
-//import {tedious} from "";
->>>>>>> 07d7600818487e14941cd49f885b02a8575341ea
 
 const App = () => {
   const [speciesData, speciesLoading] = useFetch(
