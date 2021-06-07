@@ -1,8 +1,22 @@
 import React from "react";
+<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+=======
+import { useFetch } from "./hooks/useFetch";
+//import {tedious} from "";
+>>>>>>> 07d7600818487e14941cd49f885b02a8575341ea
 
 const App = () => {
+  const [speciesData, speciesLoading] = useFetch(
+    "https://raw.githubusercontent.com/ramirostUW/430FinalProject/main/kaggleDataset/species.csv"
+  );
+  console.log(speciesData);
+  const [parksData, parksLoading] = useFetch(
+    "https://raw.githubusercontent.com/ramirostUW/430FinalProject/main/kaggleDataset/parks.csv"
+  );
+  console.log(parksData);
+  
   return (
     <div>
       <h1>Info 430 Final Project</h1>
