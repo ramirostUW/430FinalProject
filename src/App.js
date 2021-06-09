@@ -11,14 +11,26 @@ const App = () => {
   const [parksData, parksLoading] = useFetch(
     "https://raw.githubusercontent.com/ramirostUW/430FinalProject/main/kaggleDataset/parks.csv"
   );
-
+  console.log(parksData);
+  console.log(speciesData);
   function clickfunction(){
     console.log("A checkbox was clicked!")
   }
-  const datasample = speciesData.slice(0, 20);
+  function getParkCode(parkName) {
+     for (var i = 0; i < parksData.length; i++){
+        if (parksData[i]["Park Name"] == parkName) {
+          var url = "https://www.nps.gov/" + parksData[i]["Park Code"] + "/index.htm";
+          console.log("hi")
+          return (
+            <a href={url} className="btn" id="link">Link to Park</a>
+          )
+       }
+    }
+  }
+  
+  const datasample = speciesData.slice(10000, 10020);
   return (
     <div>
-
       <div className="card" id="titlecard" style={{ width: "70%" }}>
         <h1>Info 430 Final Project</h1>
         <p>By: Michael, Olivia, Pranav, and Ramiro</p>
@@ -47,7 +59,8 @@ const App = () => {
                    <b>Abundance:</b> {sample["Abundance"]}
                    <br></br>
                 </p>
-                <a href="#" className="btn" >button</a>
+                {getParkCode(sample["Park Name"])}
+                
               </div>
             </div>
           })}

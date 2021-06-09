@@ -1054,7 +1054,7 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
-  var _jsxFileName = "/mnt/c/info430/430FinalProject/src/index.js";
+  var _jsxFileName = "C:\\Users\\Michael\\Info430\\430FinalProject\\src\\index.js";
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26275,21 +26275,44 @@ try {
   require('bootstrap/dist/css/bootstrap.min.css');
   var _hooksUseFetch = require("./hooks/useFetch");
   require('./app.css');
-  var _jsxFileName = "/mnt/c/info430/430FinalProject/src/App.js", _s = $RefreshSig$();
+  var _jsxFileName = "C:\\Users\\Michael\\Info430\\430FinalProject\\src\\App.js", _s = $RefreshSig$();
   const App = () => {
     _s();
     const [speciesData, speciesLoading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/ramirostUW/430FinalProject/main/kaggleDataset/species.csv");
     const [parksData, parksLoading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/ramirostUW/430FinalProject/main/kaggleDataset/parks.csv");
+    console.log(parksData);
+    console.log(speciesData);
     function clickfunction() {
       console.log("A checkbox was clicked!");
     }
-    const datasample = speciesData.slice(0, 20);
+    function getParkCode(parkName) {
+      for (var i = 0; i < parksData.length; i++) {
+        if (parksData[i]["Park Name"] == parkName) {
+          var url = "https://www.nps.gov/" + parksData[i]["Park Code"] + "/index.htm";
+          console.log("hi");
+          return (
+            /*#__PURE__*/_reactDefault.default.createElement("a", {
+              href: url,
+              className: "btn",
+              id: "link",
+              __self: this,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 25,
+                columnNumber: 13
+              }
+            }, "Link to Park")
+          );
+        }
+      }
+    }
+    const datasample = speciesData.slice(10000, 10020);
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 20,
+          lineNumber: 33,
           columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26301,28 +26324,28 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22,
+          lineNumber: 34,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 23,
+          lineNumber: 35,
           columnNumber: 9
         }
       }, "Info 430 Final Project"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 24,
+          lineNumber: 36,
           columnNumber: 9
         }
       }, "By: Michael, Olivia, Pranav, and Ramiro")), /*#__PURE__*/_reactDefault.default.createElement("form", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27,
+          lineNumber: 39,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26334,7 +26357,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 28,
+          lineNumber: 40,
           columnNumber: 9
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26342,14 +26365,14 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29,
+          lineNumber: 41,
           columnNumber: 9
         }
       }, "Checklist 1"), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29,
+          lineNumber: 41,
           columnNumber: 50
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26361,7 +26384,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30,
+          lineNumber: 42,
           columnNumber: 9
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26369,14 +26392,14 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31,
+          lineNumber: 43,
           columnNumber: 9
         }
       }, "Checklist 2"), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31,
+          lineNumber: 43,
           columnNumber: 50
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26388,7 +26411,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 32,
+          lineNumber: 44,
           columnNumber: 9
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26396,21 +26419,21 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33,
+          lineNumber: 45,
           columnNumber: 9
         }
       }, "Checklist 3"), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33,
+          lineNumber: 45,
           columnNumber: 50
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33,
+          lineNumber: 45,
           columnNumber: 56
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26419,7 +26442,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34,
+          lineNumber: 46,
           columnNumber: 9
         }
       })), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26427,7 +26450,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36,
+          lineNumber: 48,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26435,7 +26458,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37,
+          lineNumber: 49,
           columnNumber: 9
         }
       }, datasample.map((sample, index) => {
@@ -26448,7 +26471,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 39,
+              lineNumber: 51,
               columnNumber: 20
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26456,7 +26479,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 40,
+              lineNumber: 52,
               columnNumber: 15
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
@@ -26464,7 +26487,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 41,
+              lineNumber: 53,
               columnNumber: 17
             }
           }, sample["Common Names"]), /*#__PURE__*/_reactDefault.default.createElement("p", {
@@ -26472,61 +26495,52 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 42,
+              lineNumber: 54,
               columnNumber: 17
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("b", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 43,
+              lineNumber: 55,
               columnNumber: 20
             }
           }, "Scientific Name:"), " ", sample["Scientific Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 44,
+              lineNumber: 56,
               columnNumber: 20
             }
           }), /*#__PURE__*/_reactDefault.default.createElement("b", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 45,
+              lineNumber: 57,
               columnNumber: 20
             }
           }, "Where:"), " ", sample["Park Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 46,
+              lineNumber: 58,
               columnNumber: 20
             }
           }), /*#__PURE__*/_reactDefault.default.createElement("b", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 47,
+              lineNumber: 59,
               columnNumber: 20
             }
           }, "Abundance:"), " ", sample["Abundance"], /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 48,
+              lineNumber: 60,
               columnNumber: 20
             }
-          })), /*#__PURE__*/_reactDefault.default.createElement("a", {
-            href: "#",
-            className: "btn",
-            __self: undefined,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 50,
-              columnNumber: 17
-            }
-          }, "button")))
+          })), getParkCode(sample["Park Name"])))
         );
       }))))
     );
@@ -26544,7 +26558,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
+},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./app.css":"4RKET"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
