@@ -1054,7 +1054,7 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
-  var _jsxFileName = "C:\\Users\\Michael\\Info430\\430FinalProject\\src\\index.js";
+  var _jsxFileName = "/Users/pranavvasan/Desktop/INFO430/430FinalProject/src/index.js";
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26275,9 +26275,10 @@ try {
   require('bootstrap/dist/css/bootstrap.min.css');
   var _hooksUseFetch = require("./hooks/useFetch");
   require('./app.css');
-  var _jsxFileName = "C:\\Users\\Michael\\Info430\\430FinalProject\\src\\App.js", _s = $RefreshSig$();
+  var _jsxFileName = "/Users/pranavvasan/Desktop/INFO430/430FinalProject/src/App.js", _s2 = $RefreshSig$();
   const App = () => {
-    _s();
+    _s2();
+    var _s = $RefreshSig$();
     const [speciesData, speciesLoading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/ramirostUW/430FinalProject/main/kaggleDataset/species.csv");
     const [parksData, parksLoading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/ramirostUW/430FinalProject/main/kaggleDataset/parks.csv");
     console.log(parksData);
@@ -26307,12 +26308,62 @@ try {
       }
     }
     const datasample = speciesData.slice(10000, 10020);
+    function searchfunction() {
+      _s();
+      const [searchTerm, setSearchTerm] = _reactDefault.default.useState("");
+      const [searchResults, setSearchResults] = _reactDefault.default.useState([]);
+      console.log("These are the search results" + searchResults);
+      const handleChange = event => {
+        setSearchTerm(event.target.value);
+      };
+      _reactDefault.default.useEffect(() => {
+        const results = datasample.filter(park => park.toLowerCase().includes(searchTerm));
+        setSearchResults(results);
+      }, [searchTerm]);
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "App",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 45,
+            columnNumber: 7
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("input", {
+          type: "text",
+          placeholder: "Search",
+          value: searchTerm,
+          onChange: handleChange,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 46,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("ul", {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 47,
+            columnNumber: 9
+          }
+        }, searchResults.map(item => /*#__PURE__*/_reactDefault.default.createElement("li", {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 49,
+            columnNumber: 13
+          }
+        }, item))))
+      );
+    }
+    _s(searchfunction, "vFVq2CqhFvuwfi/Qub5hbBnO1R0=");
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 33,
+          lineNumber: 57,
           columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26324,28 +26375,35 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34,
+          lineNumber: 58,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35,
+          lineNumber: 59,
           columnNumber: 9
         }
       }, "Info 430 Final Project"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36,
+          lineNumber: 60,
           columnNumber: 9
         }
-      }, "By: Michael, Olivia, Pranav, and Ramiro")), /*#__PURE__*/_reactDefault.default.createElement("form", {
+      }, "By: Michael, Olivia, Pranav, and Ramiro")), /*#__PURE__*/_reactDefault.default.createElement(SearchBar, {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 39,
+          lineNumber: 62,
+          columnNumber: 7
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("form", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 64,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26357,7 +26415,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40,
+          lineNumber: 65,
           columnNumber: 9
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26365,14 +26423,14 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41,
+          lineNumber: 66,
           columnNumber: 9
         }
       }, "Checklist 1"), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41,
+          lineNumber: 66,
           columnNumber: 50
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26384,7 +26442,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 42,
+          lineNumber: 67,
           columnNumber: 9
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26392,14 +26450,14 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43,
+          lineNumber: 68,
           columnNumber: 9
         }
       }, "Checklist 2"), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43,
+          lineNumber: 68,
           columnNumber: 50
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26411,7 +26469,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 44,
+          lineNumber: 69,
           columnNumber: 9
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -26419,21 +26477,21 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45,
+          lineNumber: 70,
           columnNumber: 9
         }
       }, "Checklist 3"), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45,
+          lineNumber: 70,
           columnNumber: 50
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("br", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45,
+          lineNumber: 70,
           columnNumber: 56
         }
       }), /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -26442,7 +26500,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46,
+          lineNumber: 71,
           columnNumber: 9
         }
       })), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26450,7 +26508,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48,
+          lineNumber: 73,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26458,7 +26516,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49,
+          lineNumber: 74,
           columnNumber: 9
         }
       }, datasample.map((sample, index) => {
@@ -26471,7 +26529,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 51,
+              lineNumber: 76,
               columnNumber: 20
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26479,7 +26537,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 52,
+              lineNumber: 77,
               columnNumber: 15
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
@@ -26487,7 +26545,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 53,
+              lineNumber: 78,
               columnNumber: 17
             }
           }, sample["Common Names"]), /*#__PURE__*/_reactDefault.default.createElement("p", {
@@ -26495,49 +26553,49 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 54,
+              lineNumber: 79,
               columnNumber: 17
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("b", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 55,
+              lineNumber: 80,
               columnNumber: 20
             }
           }, "Scientific Name:"), " ", sample["Scientific Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 56,
+              lineNumber: 81,
               columnNumber: 20
             }
           }), /*#__PURE__*/_reactDefault.default.createElement("b", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 57,
+              lineNumber: 82,
               columnNumber: 20
             }
           }, "Where:"), " ", sample["Park Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 58,
+              lineNumber: 83,
               columnNumber: 20
             }
           }), /*#__PURE__*/_reactDefault.default.createElement("b", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 59,
+              lineNumber: 84,
               columnNumber: 20
             }
           }, "Abundance:"), " ", sample["Abundance"], /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 60,
+              lineNumber: 85,
               columnNumber: 20
             }
           })), getParkCode(sample["Park Name"])))
@@ -26545,20 +26603,67 @@ try {
       }))))
     );
   };
-  _s(App, "yRKcw3NKcCUSKDY91+Gau8q+/g0=", false, function () {
+  _s2(App, "yRKcw3NKcCUSKDY91+Gau8q+/g0=", false, function () {
     return [_hooksUseFetch.useFetch, _hooksUseFetch.useFetch];
   });
   _c = App;
+  const SearchBar = () => /*#__PURE__*/_reactDefault.default.createElement("form", {
+    action: "/",
+    method: "get",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 100,
+      columnNumber: 3
+    }
+  }, /*#__PURE__*/_reactDefault.default.createElement("label", {
+    htmlFor: "header-search",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 101,
+      columnNumber: 5
+    }
+  }, /*#__PURE__*/_reactDefault.default.createElement("span", {
+    className: "visually-hidden",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 102,
+      columnNumber: 7
+    }
+  }, "Search parks")), /*#__PURE__*/_reactDefault.default.createElement("input", {
+    type: "text",
+    id: "header-search",
+    placeholder: "Search parks",
+    name: "s",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 104,
+      columnNumber: 5
+    }
+  }), /*#__PURE__*/_reactDefault.default.createElement("button", {
+    type: "submit",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 110,
+      columnNumber: 7
+    }
+  }, "Search"));
+  _c2 = SearchBar;
   exports.default = App;
-  var _c;
+  var _c, _c2;
   $RefreshReg$(_c, "App");
+  $RefreshReg$(_c2, "SearchBar");
   helpers.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./app.css":"4RKET"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
+},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
