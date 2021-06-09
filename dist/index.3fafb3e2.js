@@ -26278,29 +26278,28 @@ try {
   const App = () => {
     _s();
     const [speciesData, speciesLoading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/ramirostUW/430FinalProject/main/kaggleDataset/species.csv");
-    console.log(speciesData);
     const [parksData, parksLoading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/ramirostUW/430FinalProject/main/kaggleDataset/parks.csv");
-    console.log(speciesData[0]);
+    const datasample = speciesData.slice(0, 20);
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 17,
+          lineNumber: 15,
           columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 19,
+          lineNumber: 17,
           columnNumber: 7
         }
       }, "Info 430 Final Project"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 20,
+          lineNumber: 18,
           columnNumber: 7
         }
       }, "By: Michael, Olivia, Pranav. and Ramiro"), /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26308,7 +26307,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21,
+          lineNumber: 19,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26316,75 +26315,79 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22,
+          lineNumber: 20,
           columnNumber: 9
         }
-      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
-        className: "card",
-        style: {
-          width: "20%"
-        },
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 23,
-          columnNumber: 9
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
-        className: "card-body",
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 24,
-          columnNumber: 13
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
-        className: "card-title",
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 25,
-          columnNumber: 15
-        }
-      }, speciesData[0]["Common Names"]), /*#__PURE__*/_reactDefault.default.createElement("p", {
-        className: "card-text",
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 26,
-          columnNumber: 14
-        }
-      }, "Scientific Name: ", speciesData[0]["Scientific Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 28,
-          columnNumber: 17
-        }
-      }), "Where: ", speciesData[0]["Park Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 30,
-          columnNumber: 17
-        }
-      }), "Abundance: ", speciesData[0]["Abundance"], /*#__PURE__*/_reactDefault.default.createElement("br", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 32,
-          columnNumber: 17
-        }
-      })), /*#__PURE__*/_reactDefault.default.createElement("a", {
-        href: "#",
-        className: "btn btn-primary",
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 34,
-          columnNumber: 13
-        }
-      }, "Go somewhere"))))))
+      }, datasample.map((sample, index) => {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            className: "card",
+            style: {
+              width: "20%"
+            },
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 22,
+              columnNumber: 20
+            }
+          }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+            className: "card-body",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 23,
+              columnNumber: 15
+            }
+          }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
+            className: "card-title",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 24,
+              columnNumber: 17
+            }
+          }, sample["Common Names"]), /*#__PURE__*/_reactDefault.default.createElement("p", {
+            className: "card-text",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 25,
+              columnNumber: 17
+            }
+          }, "Scientific Name: ", sample["Scientific Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 27,
+              columnNumber: 20
+            }
+          }), "Where: ", sample["Park Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 29,
+              columnNumber: 20
+            }
+          }), "Abundance: ", sample["Abundance"], /*#__PURE__*/_reactDefault.default.createElement("br", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 31,
+              columnNumber: 20
+            }
+          })), /*#__PURE__*/_reactDefault.default.createElement("a", {
+            href: "#",
+            className: "btn btn-primary",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 33,
+              columnNumber: 17
+            }
+          }, "Go somewhere")))
+        );
+      }))))
     );
   };
   _s(App, "yRKcw3NKcCUSKDY91+Gau8q+/g0=", false, function () {
