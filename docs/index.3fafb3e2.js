@@ -26665,7 +26665,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./hooks/useFetchSQL":"56OKW"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
+},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","./hooks/useFetchSQL":"56OKW","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27331,7 +27331,7 @@ function registerExportsForReactRefresh(module) {
   }
 }
 
-},{"react-refresh/runtime":"592mh"}],"4RKET":[function() {},{}],"56OKW":[function(require,module,exports) {
+},{"react-refresh/runtime":"592mh"}],"56OKW":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27357,7 +27357,7 @@ try {
     }
     function initializeQuery(query) {
       _s();
-      let queryURL = "http://165.232.146.236/sqlServerAPI/sqlQuery?query=" + query.replaceAll(" ", "%20");
+      let queryURL = "//165.232.146.236/sqlServerAPI/sqlQuery?query=" + query.replaceAll(" ", "%20");
       console.log(queryURL);
       _react.useEffect(() => {
         fetchUrl(queryURL);
@@ -27368,7 +27368,7 @@ try {
     function getNewQuery(newQuery) {
       setData([]);
       setLoading(true);
-      let queryURL = "http://165.232.146.236/sqlServerAPI/sqlQuery?query=" + newQuery.replaceAll(" ", "%20");
+      let queryURL = "//165.232.146.236/sqlServerAPI/sqlQuery?query=" + newQuery.replaceAll(" ", "%20");
       async function fetchUrl(url) {
         const response = await _d3Fetch.json(url);
         setData(response);
@@ -27385,6 +27385,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"d3-fetch":"7Gs6I","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequire2d18")
+},{"d3-fetch":"7Gs6I","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4RKET":[function() {},{}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequire2d18")
 
 //# sourceMappingURL=index.3fafb3e2.js.map
