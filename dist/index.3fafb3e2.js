@@ -1054,7 +1054,7 @@ try {
   var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
   var _App = require("./App");
   var _AppDefault = _parcelHelpers.interopDefault(_App);
-  var _jsxFileName = "C:\\Users\\Michael\\Info430\\430FinalProject\\src\\index.js";
+  var _jsxFileName = "C:\\Users\\olivia\\Documents\\GitHub\\430FinalProject\\src\\index.js";
   _reactDomDefault.default.render(/*#__PURE__*/_reactDefault.default.createElement(_AppDefault.default, {
     __self: undefined,
     __source: {
@@ -26274,7 +26274,8 @@ try {
   var _reactDefault = _parcelHelpers.interopDefault(_react);
   require('bootstrap/dist/css/bootstrap.min.css');
   var _hooksUseFetch = require("./hooks/useFetch");
-  var _jsxFileName = "C:\\Users\\Michael\\Info430\\430FinalProject\\src\\App.js", _s = $RefreshSig$();
+  require('./app.css');
+  var _jsxFileName = "C:\\Users\\olivia\\Documents\\GitHub\\430FinalProject\\src\\App.js", _s = $RefreshSig$();
   const App = () => {
     _s();
     const [speciesData, speciesLoading] = _hooksUseFetch.useFetch("https://raw.githubusercontent.com/ramirostUW/430FinalProject/main/kaggleDataset/species.csv");
@@ -26285,29 +26286,41 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 15,
+          lineNumber: 16,
           columnNumber: 5
         }
-      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
+      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        className: "card",
+        id: "titlecard",
+        style: {
+          width: "70%"
+        },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 17,
           columnNumber: 7
         }
-      }, "Info 430 Final Project"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+      }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 18,
-          columnNumber: 7
+          columnNumber: 9
         }
-      }, "By: Michael, Olivia, Pranav. and Ramiro"), /*#__PURE__*/_reactDefault.default.createElement("div", {
-        id: "col",
+      }, "Info 430 Final Project"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 19,
+          columnNumber: 9
+        }
+      }, "By: Michael, Olivia, Pranav, and Ramiro")), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "col",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 23,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26315,7 +26328,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 20,
+          lineNumber: 24,
           columnNumber: 9
         }
       }, datasample.map((sample, index) => {
@@ -26328,7 +26341,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 22,
+              lineNumber: 26,
               columnNumber: 20
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26336,7 +26349,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 23,
+              lineNumber: 27,
               columnNumber: 15
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
@@ -26344,7 +26357,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 24,
+              lineNumber: 28,
               columnNumber: 17
             }
           }, sample["Common Names"]), /*#__PURE__*/_reactDefault.default.createElement("p", {
@@ -26352,40 +26365,61 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 25,
+              lineNumber: 29,
               columnNumber: 17
             }
-          }, "Scientific Name: ", sample["Scientific Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
+          }, /*#__PURE__*/_reactDefault.default.createElement("b", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 27,
+              lineNumber: 30,
               columnNumber: 20
             }
-          }), "Where: ", sample["Park Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
-            __self: undefined,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 29,
-              columnNumber: 20
-            }
-          }), "Abundance: ", sample["Abundance"], /*#__PURE__*/_reactDefault.default.createElement("br", {
+          }, "Scientific Name:"), " ", sample["Scientific Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
               lineNumber: 31,
               columnNumber: 20
             }
-          })), /*#__PURE__*/_reactDefault.default.createElement("a", {
-            href: "#",
-            className: "btn btn-primary",
+          }), /*#__PURE__*/_reactDefault.default.createElement("b", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 32,
+              columnNumber: 20
+            }
+          }, "Where:"), " ", sample["Park Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
               lineNumber: 33,
+              columnNumber: 20
+            }
+          }), /*#__PURE__*/_reactDefault.default.createElement("b", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 34,
+              columnNumber: 20
+            }
+          }, "Abundance:"), " ", sample["Abundance"], /*#__PURE__*/_reactDefault.default.createElement("br", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 35,
+              columnNumber: 20
+            }
+          })), /*#__PURE__*/_reactDefault.default.createElement("a", {
+            href: "#",
+            className: "btn",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 37,
               columnNumber: 17
             }
-          }, "Go somewhere")))
+          }, "button")))
         );
       }))))
     );
@@ -26403,7 +26437,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
+},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27069,6 +27103,6 @@ function registerExportsForReactRefresh(module) {
   }
 }
 
-},{"react-refresh/runtime":"592mh"}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequire2d18")
+},{"react-refresh/runtime":"592mh"}],"4RKET":[function() {},{}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequire2d18")
 
 //# sourceMappingURL=index.3fafb3e2.js.map

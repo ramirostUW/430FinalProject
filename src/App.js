@@ -14,9 +14,12 @@ const App = () => {
   const datasample = speciesData.slice(0, 20);
   return (
     <div>
+      <div className="card" id="titlecard" style={{ width: "70%" }}>
+        <h1>Info 430 Final Project</h1>
+        <p>By: Michael, Olivia, Pranav, and Ramiro</p>
+      </div>
 
-      <h1>Info 430 Final Project</h1>
-      <h2>By: Michael, Olivia, Pranav. and Ramiro</h2>
+     
       <div id="col">
         <div id="row">
           {datasample.map((sample, index) => {
@@ -24,14 +27,14 @@ const App = () => {
               <div className="card-body" >
                 <h5 className="card-title">{sample["Common Names"]}</h5>
                 <p className="card-text">
-                   Scientific Name: {sample["Scientific Name"]}
+                   <b>Scientific Name:</b> {sample["Scientific Name"]}
                    <br></br>
-                   Where: {sample["Park Name"]}
+                   <b>Where:</b> {sample["Park Name"]}
                    <br></br>
-                   Abundance: {sample["Abundance"]}
+                   <b>Abundance:</b> {sample["Abundance"]}
                    <br></br>
                 </p>
-                <a href="#" className="btn btn-primary" >Go somewhere</a>
+                <a href="#" className="btn" >button</a>
               </div>
             </div>
           })}

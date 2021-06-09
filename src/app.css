@@ -1,7 +1,37 @@
 body {
-    background-color: #282c34;
-    color: white;
-    padding: 40px;
-    font-family: Arial;
+    color: black;
+    background-color: #24272e;
+    font-family: Consolas;
     text-align: center;
   }
+
+.titlecard {
+    background-color: #e0e0e0;
+    padding: 50px;
+}
+
+
+.card {
+    background-color: #e0e0e0;
+    margin: 30px;
+}
+
+.card-title {
+    color: #454545;
+    background-color: #cccccc;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #808080;
+    font-size: 0.75em;
+    line-height: 1.25em;
+    
+}
+
+.btn {
+    color: #e0e0e0;
+    background-color: #2e3138;
+}
