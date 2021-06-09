@@ -14,6 +14,7 @@ const useFetchSQL = (query) => {
   }
   function initializeQuery(query){
     let queryURL = "http://165.232.146.236/sqlServerAPI/sqlQuery?query=" + query.replaceAll(" ", "%20");
+    console.log(queryURL);
     useEffect(() => {
       fetchUrl(queryURL);
     }, []);

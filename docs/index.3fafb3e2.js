@@ -26272,44 +26272,497 @@ try {
   _parcelHelpers.defineInteropFlag(exports);
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _jsxFileName = "/mnt/c/info430/430FinalProject/src/App.js";
+  require('bootstrap/dist/css/bootstrap.min.css');
+  require("./hooks/useFetch");
+  var _hooksUseFetchSQL = require("./hooks/useFetchSQL");
+  require('./app.css');
+  var _jsxFileName = "/mnt/c/info430/430FinalProject/src/App.js", _s2 = $RefreshSig$();
   const App = () => {
+    _s2();
+    var _s = $RefreshSig$();
+    const [speciesData, speciesLoading] = _hooksUseFetchSQL.useFetchSQL("Select Top 50 * from Species");
+    const [parksData, parksLoading] = _hooksUseFetchSQL.useFetchSQL("Select * from Parks");
+    console.log(parksData);
+    console.log(speciesData);
+    function clickfunction() {
+      console.log("A checkbox was clicked!");
+    }
+    function getParkCode(parkName) {
+      for (var i = 0; i < parksData.length; i++) {
+        if (parksData[i]["Park Name"] == parkName) {
+          var url = "https://www.nps.gov/" + parksData[i]["Park Code"] + "/index.htm";
+          console.log("hi");
+          return (
+            /*#__PURE__*/_reactDefault.default.createElement("a", {
+              href: url,
+              className: "btn",
+              id: "link",
+              __self: this,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 27,
+                columnNumber: 13
+              }
+            }, "Link to Park")
+          );
+        }
+      }
+    }
+    const datasample = speciesData;
+    // .slice(10000, 10020);
+    function searchfunction() {
+      _s();
+      const [searchTerm, setSearchTerm] = _reactDefault.default.useState("");
+      const [searchResults, setSearchResults] = _reactDefault.default.useState([]);
+      console.log("These are the search results" + searchResults);
+      const handleChange = event => {
+        setSearchTerm(event.target.value);
+      };
+      _reactDefault.default.useEffect(() => {
+        const results = datasample.filter(park => park.toLowerCase().includes(searchTerm));
+        setSearchResults(results);
+      }, [searchTerm]);
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "App",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 47,
+            columnNumber: 7
+          }
+        }, /*#__PURE__*/_reactDefault.default.createElement("input", {
+          type: "text",
+          placeholder: "Search",
+          value: searchTerm,
+          onChange: handleChange,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 48,
+            columnNumber: 9
+          }
+        }), /*#__PURE__*/_reactDefault.default.createElement("ul", {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 49,
+            columnNumber: 9
+          }
+        }, searchResults.map(item => /*#__PURE__*/_reactDefault.default.createElement("li", {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 51,
+            columnNumber: 13
+          }
+        }, item))))
+      );
+    }
+    _s(searchfunction, "vFVq2CqhFvuwfi/Qub5hbBnO1R0=");
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 5,
+          lineNumber: 59,
           columnNumber: 5
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        className: "card",
+        id: "titlecard",
+        style: {
+          width: "70%"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 60,
+          columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 6,
-          columnNumber: 7
+          lineNumber: 61,
+          columnNumber: 9
         }
-      }, "Info 430 Final Project"), /*#__PURE__*/_reactDefault.default.createElement("h2", {
+      }, "Info 430 Final Project"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 7,
+          lineNumber: 62,
+          columnNumber: 9
+        }
+      }, "By: Michael, Olivia, Pranav, and Ramiro")), /*#__PURE__*/_reactDefault.default.createElement(SearchBar, {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 64,
           columnNumber: 7
         }
-      }, "By: Michael, Olivia, Pranav. and Ramiro"))
+      }), /*#__PURE__*/_reactDefault.default.createElement("form", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 66,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("input", {
+        type: "checkbox",
+        id: "check1",
+        name: "check1",
+        value: "Check1",
+        onClick: clickfunction,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 67,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+        for: "vehicle1",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 68,
+          columnNumber: 9
+        }
+      }, "Checklist 1"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 68,
+          columnNumber: 50
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("input", {
+        type: "checkbox",
+        id: "check2",
+        name: "check2",
+        value: "Check2",
+        onClick: clickfunction,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 69,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+        for: "vehicle2",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 70,
+          columnNumber: 9
+        }
+      }, "Checklist 2"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 70,
+          columnNumber: 50
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("input", {
+        type: "checkbox",
+        id: "check3",
+        name: "check3",
+        value: "Check3",
+        onClick: clickfunction,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 71,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+        for: "vehicle3",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 72,
+          columnNumber: 9
+        }
+      }, "Checklist 3"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 72,
+          columnNumber: 50
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 72,
+          columnNumber: 56
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("input", {
+        type: "submit",
+        value: "Submit",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 73,
+          columnNumber: 9
+        }
+      })), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "col",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 75,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        id: "row",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 76,
+          columnNumber: 9
+        }
+      }, datasample.map((sample, index) => {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            className: "card",
+            style: {
+              width: "20%"
+            },
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 78,
+              columnNumber: 20
+            }
+          }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+            className: "card-body",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 79,
+              columnNumber: 15
+            }
+          }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
+            className: "card-title",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 80,
+              columnNumber: 17
+            }
+          }, sample["Common_Names"]), /*#__PURE__*/_reactDefault.default.createElement("p", {
+            className: "card-text",
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 81,
+              columnNumber: 17
+            }
+          }, /*#__PURE__*/_reactDefault.default.createElement("b", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 82,
+              columnNumber: 20
+            }
+          }, "Scientific Name:"), " ", sample["Scientific_Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 83,
+              columnNumber: 20
+            }
+          }), /*#__PURE__*/_reactDefault.default.createElement("b", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 84,
+              columnNumber: 20
+            }
+          }, "Where:"), " ", sample["Park_Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 85,
+              columnNumber: 20
+            }
+          }), /*#__PURE__*/_reactDefault.default.createElement("b", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 86,
+              columnNumber: 20
+            }
+          }, "Abundance:"), " ", sample["Abundance"], /*#__PURE__*/_reactDefault.default.createElement("br", {
+            __self: undefined,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 87,
+              columnNumber: 20
+            }
+          })), getParkCode(sample["Park_Name"])))
+        );
+      }))))
     );
   };
+  _s2(App, "69LTmC9cc8KPU9KMz7y1Kyx8/BE=", false, function () {
+    return [_hooksUseFetchSQL.useFetchSQL, _hooksUseFetchSQL.useFetchSQL];
+  });
   _c = App;
+  const SearchBar = () => /*#__PURE__*/_reactDefault.default.createElement("form", {
+    action: "/",
+    method: "get",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 102,
+      columnNumber: 3
+    }
+  }, /*#__PURE__*/_reactDefault.default.createElement("label", {
+    htmlFor: "header-search",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 103,
+      columnNumber: 5
+    }
+  }, /*#__PURE__*/_reactDefault.default.createElement("span", {
+    className: "visually-hidden",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 104,
+      columnNumber: 7
+    }
+  }, "Search parks")), /*#__PURE__*/_reactDefault.default.createElement("input", {
+    type: "text",
+    id: "header-search",
+    placeholder: "Search parks",
+    name: "s",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 106,
+      columnNumber: 5
+    }
+  }), /*#__PURE__*/_reactDefault.default.createElement("button", {
+    type: "submit",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 112,
+      columnNumber: 7
+    }
+  }, "Search"));
+  _c2 = SearchBar;
   exports.default = App;
-  var _c;
+  var _c, _c2;
   $RefreshReg$(_c, "App");
+  $RefreshReg$(_c2, "SearchBar");
   helpers.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5gA8y":[function(require,module,exports) {
+},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./hooks/useFetchSQL":"56OKW"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "useFetch", function () {
+    return useFetch;
+  });
+  var _d3Fetch = require("d3-fetch");
+  var _react = require("react");
+  var _s = $RefreshSig$();
+  const useFetch = url => {
+    _s();
+    const [data, setData] = _react.useState([]);
+    const [loading, setLoading] = _react.useState(true);
+    async function fetchUrl() {
+      const response = await _d3Fetch.csv(url);
+      setData(response);
+      setLoading(false);
+    }
+    _react.useEffect(() => {
+      fetchUrl();
+    }, []);
+    return [data, loading];
+  };
+  _s(useFetch, "YP7e7Smzxlgf2d3MqLcgRZjo83U=");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"d3-fetch":"7Gs6I","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"7Gs6I":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "blob", function () {
+  return _blobJsDefault.default;
+});
+_parcelHelpers.export(exports, "buffer", function () {
+  return _bufferJsDefault.default;
+});
+_parcelHelpers.export(exports, "dsv", function () {
+  return _dsvJsDefault.default;
+});
+_parcelHelpers.export(exports, "csv", function () {
+  return _dsvJs.csv;
+});
+_parcelHelpers.export(exports, "tsv", function () {
+  return _dsvJs.tsv;
+});
+_parcelHelpers.export(exports, "image", function () {
+  return _imageJsDefault.default;
+});
+_parcelHelpers.export(exports, "json", function () {
+  return _jsonJsDefault.default;
+});
+_parcelHelpers.export(exports, "text", function () {
+  return _textJsDefault.default;
+});
+_parcelHelpers.export(exports, "xml", function () {
+  return _xmlJsDefault.default;
+});
+_parcelHelpers.export(exports, "html", function () {
+  return _xmlJs.html;
+});
+_parcelHelpers.export(exports, "svg", function () {
+  return _xmlJs.svg;
+});
+var _blobJs = require("./blob.js");
+var _blobJsDefault = _parcelHelpers.interopDefault(_blobJs);
+var _bufferJs = require("./buffer.js");
+var _bufferJsDefault = _parcelHelpers.interopDefault(_bufferJs);
+var _dsvJs = require("./dsv.js");
+var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
+var _imageJs = require("./image.js");
+var _imageJsDefault = _parcelHelpers.interopDefault(_imageJs);
+var _jsonJs = require("./json.js");
+var _jsonJsDefault = _parcelHelpers.interopDefault(_jsonJs);
+var _textJs = require("./text.js");
+var _textJsDefault = _parcelHelpers.interopDefault(_textJs);
+var _xmlJs = require("./xml.js");
+var _xmlJsDefault = _parcelHelpers.interopDefault(_xmlJs);
+
+},{"./blob.js":"7vfIK","./buffer.js":"4ll8L","./dsv.js":"11j9j","./image.js":"3hWTu","./json.js":"5WftU","./text.js":"6BVmR","./xml.js":"2cds7","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"7vfIK":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function responseBlob(response) {
+  if (!response.ok) throw new Error(response.status + " " + response.statusText);
+  return response.blob();
+}
+exports.default = function (input, init) {
+  return fetch(input, init).then(responseBlob);
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5gA8y":[function(require,module,exports) {
 "use strict";
 
 exports.interopDefault = function (a) {
@@ -26351,7 +26804,377 @@ exports.export = function (dest, destName, get) {
     get: get
   });
 };
-},{}],"4Jj4f":[function(require,module,exports) {
+},{}],"4ll8L":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function responseArrayBuffer(response) {
+  if (!response.ok) throw new Error(response.status + " " + response.statusText);
+  return response.arrayBuffer();
+}
+exports.default = function (input, init) {
+  return fetch(input, init).then(responseArrayBuffer);
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"11j9j":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "csv", function () {
+  return csv;
+});
+_parcelHelpers.export(exports, "tsv", function () {
+  return tsv;
+});
+var _d3Dsv = require("d3-dsv");
+var _textJs = require("./text.js");
+var _textJsDefault = _parcelHelpers.interopDefault(_textJs);
+function dsvParse(parse) {
+  return function (input, init, row) {
+    if (arguments.length === 2 && typeof init === "function") (row = init, init = undefined);
+    return _textJsDefault.default(input, init).then(function (response) {
+      return parse(response, row);
+    });
+  };
+}
+function dsv(delimiter, input, init, row) {
+  if (arguments.length === 3 && typeof init === "function") (row = init, init = undefined);
+  var format = _d3Dsv.dsvFormat(delimiter);
+  return _textJsDefault.default(input, init).then(function (response) {
+    return format.parse(response, row);
+  });
+}
+exports.default = dsv;
+var csv = dsvParse(_d3Dsv.csvParse);
+var tsv = dsvParse(_d3Dsv.tsvParse);
+
+},{"d3-dsv":"5h1cU","./text.js":"6BVmR","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5h1cU":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "dsvFormat", function () {
+  return _dsvJsDefault.default;
+});
+_parcelHelpers.export(exports, "csvParse", function () {
+  return _csvJs.csvParse;
+});
+_parcelHelpers.export(exports, "csvParseRows", function () {
+  return _csvJs.csvParseRows;
+});
+_parcelHelpers.export(exports, "csvFormat", function () {
+  return _csvJs.csvFormat;
+});
+_parcelHelpers.export(exports, "csvFormatBody", function () {
+  return _csvJs.csvFormatBody;
+});
+_parcelHelpers.export(exports, "csvFormatRows", function () {
+  return _csvJs.csvFormatRows;
+});
+_parcelHelpers.export(exports, "csvFormatRow", function () {
+  return _csvJs.csvFormatRow;
+});
+_parcelHelpers.export(exports, "csvFormatValue", function () {
+  return _csvJs.csvFormatValue;
+});
+_parcelHelpers.export(exports, "tsvParse", function () {
+  return _tsvJs.tsvParse;
+});
+_parcelHelpers.export(exports, "tsvParseRows", function () {
+  return _tsvJs.tsvParseRows;
+});
+_parcelHelpers.export(exports, "tsvFormat", function () {
+  return _tsvJs.tsvFormat;
+});
+_parcelHelpers.export(exports, "tsvFormatBody", function () {
+  return _tsvJs.tsvFormatBody;
+});
+_parcelHelpers.export(exports, "tsvFormatRows", function () {
+  return _tsvJs.tsvFormatRows;
+});
+_parcelHelpers.export(exports, "tsvFormatRow", function () {
+  return _tsvJs.tsvFormatRow;
+});
+_parcelHelpers.export(exports, "tsvFormatValue", function () {
+  return _tsvJs.tsvFormatValue;
+});
+_parcelHelpers.export(exports, "autoType", function () {
+  return _autoTypeJsDefault.default;
+});
+var _dsvJs = require("./dsv.js");
+var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
+var _csvJs = require("./csv.js");
+var _tsvJs = require("./tsv.js");
+var _autoTypeJs = require("./autoType.js");
+var _autoTypeJsDefault = _parcelHelpers.interopDefault(_autoTypeJs);
+
+},{"./dsv.js":"2BAM4","./csv.js":"1y7rN","./tsv.js":"2MrPF","./autoType.js":"2x8Ee","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2BAM4":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+var EOL = {}, EOF = {}, QUOTE = 34, NEWLINE = 10, RETURN = 13;
+function objectConverter(columns) {
+  return new Function("d", "return {" + columns.map(function (name, i) {
+    return JSON.stringify(name) + ": d[" + i + "] || \"\"";
+  }).join(",") + "}");
+}
+function customConverter(columns, f) {
+  var object = objectConverter(columns);
+  return function (row, i) {
+    return f(object(row), i, columns);
+  };
+}
+// Compute unique columns in order of discovery.
+function inferColumns(rows) {
+  var columnSet = Object.create(null), columns = [];
+  rows.forEach(function (row) {
+    for (var column in row) {
+      if (!((column in columnSet))) {
+        columns.push(columnSet[column] = column);
+      }
+    }
+  });
+  return columns;
+}
+function pad(value, width) {
+  var s = value + "", length = s.length;
+  return length < width ? new Array(width - length + 1).join(0) + s : s;
+}
+function formatYear(year) {
+  return year < 0 ? "-" + pad(-year, 6) : year > 9999 ? "+" + pad(year, 6) : pad(year, 4);
+}
+function formatDate(date) {
+  var hours = date.getUTCHours(), minutes = date.getUTCMinutes(), seconds = date.getUTCSeconds(), milliseconds = date.getUTCMilliseconds();
+  return isNaN(date) ? "Invalid Date" : formatYear(date.getUTCFullYear(), 4) + "-" + pad(date.getUTCMonth() + 1, 2) + "-" + pad(date.getUTCDate(), 2) + (milliseconds ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(milliseconds, 3) + "Z" : seconds ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "Z" : minutes || hours ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + "Z" : "");
+}
+exports.default = function (delimiter) {
+  var reFormat = new RegExp("[\"" + delimiter + "\n\r]"), DELIMITER = delimiter.charCodeAt(0);
+  function parse(text, f) {
+    var convert, columns, rows = parseRows(text, function (row, i) {
+      if (convert) return convert(row, i - 1);
+      (columns = row, convert = f ? customConverter(row, f) : objectConverter(row));
+    });
+    rows.columns = columns || [];
+    return rows;
+  }
+  function parseRows(text, f) {
+    var rows = [], // output rows
+    N = text.length, I = 0, // current character index
+    n = 0, // current line number
+    t, // current token
+    eof = N <= 0, // current token followed by EOF?
+    eol = false;
+    // current token followed by EOL?
+    // Strip the trailing newline.
+    if (text.charCodeAt(N - 1) === NEWLINE) --N;
+    if (text.charCodeAt(N - 1) === RETURN) --N;
+    function token() {
+      if (eof) return EOF;
+      if (eol) return (eol = false, EOL);
+      // Unescape quotes.
+      var i, j = I, c;
+      if (text.charCodeAt(j) === QUOTE) {
+        while (I++ < N && text.charCodeAt(I) !== QUOTE || text.charCodeAt(++I) === QUOTE) ;
+        if ((i = I) >= N) eof = true; else if ((c = text.charCodeAt(I++)) === NEWLINE) eol = true; else if (c === RETURN) {
+          eol = true;
+          if (text.charCodeAt(I) === NEWLINE) ++I;
+        }
+        return text.slice(j + 1, i - 1).replace(/""/g, "\"");
+      }
+      // Find next delimiter or newline.
+      while (I < N) {
+        if ((c = text.charCodeAt(i = I++)) === NEWLINE) eol = true; else if (c === RETURN) {
+          eol = true;
+          if (text.charCodeAt(I) === NEWLINE) ++I;
+        } else if (c !== DELIMITER) continue;
+        return text.slice(j, i);
+      }
+      // Return last token before EOF.
+      return (eof = true, text.slice(j, N));
+    }
+    while ((t = token()) !== EOF) {
+      var row = [];
+      while (t !== EOL && t !== EOF) (row.push(t), t = token());
+      if (f && (row = f(row, n++)) == null) continue;
+      rows.push(row);
+    }
+    return rows;
+  }
+  function preformatBody(rows, columns) {
+    return rows.map(function (row) {
+      return columns.map(function (column) {
+        return formatValue(row[column]);
+      }).join(delimiter);
+    });
+  }
+  function format(rows, columns) {
+    if (columns == null) columns = inferColumns(rows);
+    return [columns.map(formatValue).join(delimiter)].concat(preformatBody(rows, columns)).join("\n");
+  }
+  function formatBody(rows, columns) {
+    if (columns == null) columns = inferColumns(rows);
+    return preformatBody(rows, columns).join("\n");
+  }
+  function formatRows(rows) {
+    return rows.map(formatRow).join("\n");
+  }
+  function formatRow(row) {
+    return row.map(formatValue).join(delimiter);
+  }
+  function formatValue(value) {
+    return value == null ? "" : value instanceof Date ? formatDate(value) : reFormat.test(value += "") ? "\"" + value.replace(/"/g, "\"\"") + "\"" : value;
+  }
+  return {
+    parse: parse,
+    parseRows: parseRows,
+    format: format,
+    formatBody: formatBody,
+    formatRows: formatRows,
+    formatRow: formatRow,
+    formatValue: formatValue
+  };
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"1y7rN":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "csvParse", function () {
+  return csvParse;
+});
+_parcelHelpers.export(exports, "csvParseRows", function () {
+  return csvParseRows;
+});
+_parcelHelpers.export(exports, "csvFormat", function () {
+  return csvFormat;
+});
+_parcelHelpers.export(exports, "csvFormatBody", function () {
+  return csvFormatBody;
+});
+_parcelHelpers.export(exports, "csvFormatRows", function () {
+  return csvFormatRows;
+});
+_parcelHelpers.export(exports, "csvFormatRow", function () {
+  return csvFormatRow;
+});
+_parcelHelpers.export(exports, "csvFormatValue", function () {
+  return csvFormatValue;
+});
+var _dsvJs = require("./dsv.js");
+var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
+var csv = _dsvJsDefault.default(",");
+var csvParse = csv.parse;
+var csvParseRows = csv.parseRows;
+var csvFormat = csv.format;
+var csvFormatBody = csv.formatBody;
+var csvFormatRows = csv.formatRows;
+var csvFormatRow = csv.formatRow;
+var csvFormatValue = csv.formatValue;
+
+},{"./dsv.js":"2BAM4","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2MrPF":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "tsvParse", function () {
+  return tsvParse;
+});
+_parcelHelpers.export(exports, "tsvParseRows", function () {
+  return tsvParseRows;
+});
+_parcelHelpers.export(exports, "tsvFormat", function () {
+  return tsvFormat;
+});
+_parcelHelpers.export(exports, "tsvFormatBody", function () {
+  return tsvFormatBody;
+});
+_parcelHelpers.export(exports, "tsvFormatRows", function () {
+  return tsvFormatRows;
+});
+_parcelHelpers.export(exports, "tsvFormatRow", function () {
+  return tsvFormatRow;
+});
+_parcelHelpers.export(exports, "tsvFormatValue", function () {
+  return tsvFormatValue;
+});
+var _dsvJs = require("./dsv.js");
+var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
+var tsv = _dsvJsDefault.default("\t");
+var tsvParse = tsv.parse;
+var tsvParseRows = tsv.parseRows;
+var tsvFormat = tsv.format;
+var tsvFormatBody = tsv.formatBody;
+var tsvFormatRows = tsv.formatRows;
+var tsvFormatRow = tsv.formatRow;
+var tsvFormatValue = tsv.formatValue;
+
+},{"./dsv.js":"2BAM4","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2x8Ee":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function autoType(object) {
+  for (var key in object) {
+    var value = object[key].trim(), number, m;
+    if (!value) value = null; else if (value === "true") value = true; else if (value === "false") value = false; else if (value === "NaN") value = NaN; else if (!isNaN(number = +value)) value = number; else if (m = value.match(/^([-+]\d{2})?\d{4}(-\d{2}(-\d{2})?)?(T\d{2}:\d{2}(:\d{2}(\.\d{3})?)?(Z|[-+]\d{2}:\d{2})?)?$/)) {
+      if (fixtz && !!m[4] && !m[7]) value = value.replace(/-/g, "/").replace(/T/, " ");
+      value = new Date(value);
+    } else continue;
+    object[key] = value;
+  }
+  return object;
+}
+exports.default = autoType;
+// https://github.com/d3/d3-dsv/issues/45
+const fixtz = new Date("2019-01-01T00:00").getHours() || new Date("2019-07-01T00:00").getHours();
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6BVmR":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function responseText(response) {
+  if (!response.ok) throw new Error(response.status + " " + response.statusText);
+  return response.text();
+}
+exports.default = function (input, init) {
+  return fetch(input, init).then(responseText);
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"3hWTu":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+exports.default = function (input, init) {
+  return new Promise(function (resolve, reject) {
+    var image = new Image();
+    for (var key in init) image[key] = init[key];
+    image.onerror = reject;
+    image.onload = function () {
+      resolve(image);
+    };
+    image.src = input;
+  });
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5WftU":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function responseJson(response) {
+  if (!response.ok) throw new Error(response.status + " " + response.statusText);
+  if (response.status === 204 || response.status === 205) return;
+  return response.json();
+}
+exports.default = function (input, init) {
+  return fetch(input, init).then(responseJson);
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2cds7":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "html", function () {
+  return html;
+});
+_parcelHelpers.export(exports, "svg", function () {
+  return svg;
+});
+var _textJs = require("./text.js");
+var _textJsDefault = _parcelHelpers.interopDefault(_textJs);
+function parser(type) {
+  return (input, init) => _textJsDefault.default(input, init).then(text => new DOMParser().parseFromString(text, type));
+}
+exports.default = parser("application/xml");
+var html = parser("text/html");
+var svg = parser("image/svg+xml");
+
+},{"./text.js":"6BVmR","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"4Jj4f":[function(require,module,exports) {
 "use strict";
 var Refresh = require('react-refresh/runtime');
 function debounce(func, delay) {
@@ -26508,6 +27331,60 @@ function registerExportsForReactRefresh(module) {
   }
 }
 
-},{"react-refresh/runtime":"592mh"}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequire2d18")
+},{"react-refresh/runtime":"592mh"}],"4RKET":[function() {},{}],"56OKW":[function(require,module,exports) {
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "useFetchSQL", function () {
+    return useFetchSQL;
+  });
+  var _d3Fetch = require("d3-fetch");
+  var _react = require("react");
+  var _s2 = $RefreshSig$();
+  const useFetchSQL = query => {
+    _s2();
+    var _s = $RefreshSig$();
+    const [data, setData] = _react.useState([]);
+    const [loading, setLoading] = _react.useState(true);
+    async function fetchUrl(url) {
+      const response = await _d3Fetch.json(url);
+      setData(response);
+      setLoading(false);
+    }
+    function initializeQuery(query) {
+      _s();
+      let queryURL = "http://165.232.146.236/sqlServerAPI/sqlQuery?query=" + query.replaceAll(" ", "%20");
+      console.log(queryURL);
+      _react.useEffect(() => {
+        fetchUrl(queryURL);
+      }, []);
+    }
+    _s(initializeQuery, "OD7bBpZva5O2jO+Puf00hKivP7c=");
+    initializeQuery(query);
+    function getNewQuery(newQuery) {
+      setData([]);
+      setLoading(true);
+      let queryURL = "http://165.232.146.236/sqlServerAPI/sqlQuery?query=" + newQuery.replaceAll(" ", "%20");
+      async function fetchUrl(url) {
+        const response = await _d3Fetch.json(url);
+        setData(response);
+        setLoading(false);
+      }
+      fetchUrl(queryURL);
+    }
+    return [data, loading, getNewQuery];
+  };
+  _s2(useFetchSQL, "BKK8MGglYVFL+UMuvmfBDh5RmNg=");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"d3-fetch":"7Gs6I","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequire2d18")
 
 //# sourceMappingURL=index.3fafb3e2.js.map
