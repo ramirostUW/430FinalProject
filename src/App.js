@@ -1,6 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useFetch } from "./hooks/useFetch";
+import './app.css';
 
 
 const App = () => {
