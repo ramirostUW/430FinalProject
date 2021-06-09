@@ -3,13 +3,15 @@ Drop table if exists ConservationStatus;
 drop table if exists Parks;
 
 Create table Parks(
-    [Park Code] VARCHAR(4) primary key,
-    [Park Name] varchar(128) unique,
-    State varchar(max),
     Acres int,
     Latitude float,
-    Longitude float
+    Longitude float,
+    [Park Code] VARCHAR(4) primary key,
+    [Park Name] varchar(128) unique,
+    State varchar(max)
 )
+
+Insert into Parks values (47390, 44.35, -68.21, 'ACAD', 'Acadia National Park', 'ME')
 
 Create table Species(
     [Species ID] varchar(9),
