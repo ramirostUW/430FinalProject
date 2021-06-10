@@ -11,8 +11,6 @@ Create table Parks(
     State varchar(max)
 )
 
-Insert into Parks values (47390, 44.35, -68.21, 'ACAD', 'Acadia National Park', 'ME')
-
 Create table Species(
     [Species ID] varchar(9),
     [Park Name] varchar(128) references Parks([Park Name]),
@@ -33,9 +31,5 @@ Create table ConservationStatus (
     [Conservation Status] varchar(max)
 )
 
-EXEC sp_rename 'dbo.Species_Processed', 'Species'; 
-Delete from Species;
-Delete from ConservationStatus;
-Select count(*) from ConservationStatus;
-Select count(*) from Species;
-INSERT INTO Species VALUES ('ACAD-1000', 'Acadia National Park', 'Mammal', 'Artiodactyla', 'Cervidae', 'Alces alces', 'Moose', 'Approved', 'Present', 'Native', 'Rare', 'Resident', '', '');
+Select * from ConservationStatus;
+Select * from Species;
