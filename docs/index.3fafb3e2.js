@@ -27357,7 +27357,7 @@ try {
     }
     function initializeQuery(query) {
       _s();
-      let queryURL = "//165.232.146.236/sqlServerAPI/sqlQuery?query=" + query.replaceAll(" ", "%20");
+      let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + query.replaceAll(" ", "%20");
       console.log(queryURL);
       _react.useEffect(() => {
         fetchUrl(queryURL);
@@ -27368,7 +27368,7 @@ try {
     function getNewQuery(newQuery) {
       setData([]);
       setLoading(true);
-      let queryURL = "//165.232.146.236/sqlServerAPI/sqlQuery?query=" + newQuery.replaceAll(" ", "%20");
+      let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + newQuery.replaceAll(" ", "%20");
       async function fetchUrl(url) {
         const response = await _d3Fetch.json(url);
         setData(response);
