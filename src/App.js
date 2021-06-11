@@ -1,23 +1,25 @@
 import React from "react";
+import  {Route, Link, Switch, Redirect, NavLink } from 'react-router-dom';
+import { useParams } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Checkboxes from './Checkboxes';
 import { useFetch } from "./hooks/useFetch";
 import { useFetchSQL } from "./hooks/useFetchSQL";
 import './app.css';
 
 
 const App = () => {
-  const [speciesData, speciesLoading] = useFetchSQL(
-    "Select Top 50 * from Species"
-  );
+  const initialSpeciesquery = "Select Top 50 * from Species";
+  const [speciesData, speciesLoading, changeSpeciesDataQuery] = useFetchSQL(initialSpeciesquery);
 
+  console.log(changeSpeciesDataQuery);
   const [parksData, parksLoading] = useFetchSQL(
     "Select * from Parks"
   );
   console.log(parksData);
   console.log(speciesData);
-  function clickfunction(){
-    console.log("A checkbox was clicked!")
-  }
+
+
   function getParkCode(parkName) {
      for (var i = 0; i < parksData.length; i++){
         if (parksData[i]["Park Name"] == parkName) {
@@ -62,16 +64,7 @@ const App = () => {
         <p>By: Michael, Olivia, Pranav, and Ramiro</p>
       </div>
       <SearchBar/>
-      
-      <form>
-        <input type="checkbox" id="check1" name="check1" value="Check1" onClick={clickfunction}/>
-        <label for="vehicle1">Checklist 1</label><br />
-        <input type="checkbox" id="check2" name="check2" value="Check2" onClick={clickfunction}/>
-        <label for="vehicle2">Checklist 2</label><br />
-        <input type="checkbox" id="check3" name="check3" value="Check3" onClick={clickfunction}/>
-        <label for="vehicle3">Checklist 3</label><br /><br />
-        <input type="submit" value="Submit" />
-      </form>
+      <Checkboxes  queryChange={changeSpeciesDataQuery} originalQuery={initialSpeciesquery}/>
       <div id="col">
         <div id="row">
           {datasample.map((sample, index) => {
