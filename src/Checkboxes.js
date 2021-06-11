@@ -17,7 +17,9 @@ const Checkboxes = (props) => {
         from 
             Species
         Group By
-            Category;`
+            Category
+        ORDER BY
+            amnt DESC;`
     );
 
     const [checkboxOptions, updateCheckboxOptions] = useState({ });
@@ -52,10 +54,12 @@ const Checkboxes = (props) => {
         <form>
             {speciesCategories.map(function (categoryLine) {
                 return (
-                    <div>
-                        <input type="checkbox" id={categoryLine.Category} key={categoryLine.Category} defaultChecked="true"
+                    <div style={{padding: "10px", display : 'inline-block'}} >
+                        <input type="checkbox" id={categoryLine.Category} key={categoryLine.Category} defaultChecked="true" color="white"
                             name={categoryLine.Category} value={categoryLine.Category} onClick={clickfunction} />
-                        <label for={categoryLine.Category}>{categoryLine.Category + " (" + categoryLine.amnt + " species)"}</label><br />
+                        <label for={categoryLine.Category} style={{color: "#e0e0e0"}}>
+                            {categoryLine.Category + " (" + categoryLine.amnt + " species)"}
+                        </label><br />
                     </div>
                 )
             })}

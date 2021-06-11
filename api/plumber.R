@@ -13,7 +13,7 @@ function(){
       <h1>Info 430 Final Project API</h1>
       <p> This API is written in R using the plumber package. It was then 
       deployed using the plumberDeploy package and a DigitalOcean account 
-      (plumber has DigitalOcean integration, so this is the simplest option.</p>
+      (plumber has DigitalOcean integration, so this is the simplest option).</p>
     </body>
   </html>"
 }

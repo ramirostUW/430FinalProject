@@ -32,4 +32,6 @@ Create table ConservationStatus (
 )
 
 Select * from ConservationStatus;
-Select * from Species;
+Select Distinct Category from Species;
+
+Select Top 50 * from Species Where 1=1 AND category != 'Nonvascular Plant'

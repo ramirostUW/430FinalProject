@@ -1077,7 +1077,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-dom":"2sg1U","./App":"6Pm2X","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK"}],"3b2NM":[function(require,module,exports) {
+},{"react":"3b2NM","react-dom":"2sg1U","./App":"6Pm2X","react-router-dom":"1PMSK","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"3b2NM":[function(require,module,exports) {
 "use strict";
 if ("development" === 'production') {
   module.exports = require('./cjs/react.production.min.js');
@@ -26383,7 +26383,9 @@ try {
         className: "card",
         id: "titlecard",
         style: {
-          width: "70%"
+          width: "70%",
+          margin: "auto",
+          marginBottom: "20px"
         },
         __self: undefined,
         __source: {
@@ -26581,726 +26583,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","./hooks/useFetchSQL":"56OKW","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-router-dom":"1PMSK","react-router":"3v97x","./Checkboxes":"14f0m"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
-var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "useFetch", function () {
-    return useFetch;
-  });
-  var _d3Fetch = require("d3-fetch");
-  var _react = require("react");
-  var _s = $RefreshSig$();
-  const useFetch = url => {
-    _s();
-    const [data, setData] = _react.useState([]);
-    const [loading, setLoading] = _react.useState(true);
-    async function fetchUrl() {
-      const response = await _d3Fetch.csv(url);
-      setData(response);
-      setLoading(false);
-    }
-    _react.useEffect(() => {
-      fetchUrl();
-    }, []);
-    return [data, loading];
-  };
-  _s(useFetch, "YP7e7Smzxlgf2d3MqLcgRZjo83U=");
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"d3-fetch":"7Gs6I","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"7Gs6I":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-_parcelHelpers.export(exports, "blob", function () {
-  return _blobJsDefault.default;
-});
-_parcelHelpers.export(exports, "buffer", function () {
-  return _bufferJsDefault.default;
-});
-_parcelHelpers.export(exports, "dsv", function () {
-  return _dsvJsDefault.default;
-});
-_parcelHelpers.export(exports, "csv", function () {
-  return _dsvJs.csv;
-});
-_parcelHelpers.export(exports, "tsv", function () {
-  return _dsvJs.tsv;
-});
-_parcelHelpers.export(exports, "image", function () {
-  return _imageJsDefault.default;
-});
-_parcelHelpers.export(exports, "json", function () {
-  return _jsonJsDefault.default;
-});
-_parcelHelpers.export(exports, "text", function () {
-  return _textJsDefault.default;
-});
-_parcelHelpers.export(exports, "xml", function () {
-  return _xmlJsDefault.default;
-});
-_parcelHelpers.export(exports, "html", function () {
-  return _xmlJs.html;
-});
-_parcelHelpers.export(exports, "svg", function () {
-  return _xmlJs.svg;
-});
-var _blobJs = require("./blob.js");
-var _blobJsDefault = _parcelHelpers.interopDefault(_blobJs);
-var _bufferJs = require("./buffer.js");
-var _bufferJsDefault = _parcelHelpers.interopDefault(_bufferJs);
-var _dsvJs = require("./dsv.js");
-var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
-var _imageJs = require("./image.js");
-var _imageJsDefault = _parcelHelpers.interopDefault(_imageJs);
-var _jsonJs = require("./json.js");
-var _jsonJsDefault = _parcelHelpers.interopDefault(_jsonJs);
-var _textJs = require("./text.js");
-var _textJsDefault = _parcelHelpers.interopDefault(_textJs);
-var _xmlJs = require("./xml.js");
-var _xmlJsDefault = _parcelHelpers.interopDefault(_xmlJs);
-
-},{"./blob.js":"7vfIK","./buffer.js":"4ll8L","./dsv.js":"11j9j","./image.js":"3hWTu","./json.js":"5WftU","./text.js":"6BVmR","./xml.js":"2cds7","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"7vfIK":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-function responseBlob(response) {
-  if (!response.ok) throw new Error(response.status + " " + response.statusText);
-  return response.blob();
-}
-exports.default = function (input, init) {
-  return fetch(input, init).then(responseBlob);
-};
-
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5gA8y":[function(require,module,exports) {
-"use strict";
-
-exports.interopDefault = function (a) {
-  return a && a.__esModule ? a : {
-    default: a
-  };
-};
-
-exports.defineInteropFlag = function (a) {
-  Object.defineProperty(a, '__esModule', {
-    value: true
-  });
-};
-
-exports.exportAll = function (source, dest) {
-  Object.keys(source).forEach(function (key) {
-    if (key === 'default' || key === '__esModule') {
-      return;
-    } // Skip duplicate re-exports when they have the same value.
-
-
-    if (key in dest && dest[key] === source[key]) {
-      return;
-    }
-
-    Object.defineProperty(dest, key, {
-      enumerable: true,
-      get: function () {
-        return source[key];
-      }
-    });
-  });
-  return dest;
-};
-
-exports.export = function (dest, destName, get) {
-  Object.defineProperty(dest, destName, {
-    enumerable: true,
-    get: get
-  });
-};
-},{}],"4ll8L":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-function responseArrayBuffer(response) {
-  if (!response.ok) throw new Error(response.status + " " + response.statusText);
-  return response.arrayBuffer();
-}
-exports.default = function (input, init) {
-  return fetch(input, init).then(responseArrayBuffer);
-};
-
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"11j9j":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-_parcelHelpers.export(exports, "csv", function () {
-  return csv;
-});
-_parcelHelpers.export(exports, "tsv", function () {
-  return tsv;
-});
-var _d3Dsv = require("d3-dsv");
-var _textJs = require("./text.js");
-var _textJsDefault = _parcelHelpers.interopDefault(_textJs);
-function dsvParse(parse) {
-  return function (input, init, row) {
-    if (arguments.length === 2 && typeof init === "function") (row = init, init = undefined);
-    return _textJsDefault.default(input, init).then(function (response) {
-      return parse(response, row);
-    });
-  };
-}
-function dsv(delimiter, input, init, row) {
-  if (arguments.length === 3 && typeof init === "function") (row = init, init = undefined);
-  var format = _d3Dsv.dsvFormat(delimiter);
-  return _textJsDefault.default(input, init).then(function (response) {
-    return format.parse(response, row);
-  });
-}
-exports.default = dsv;
-var csv = dsvParse(_d3Dsv.csvParse);
-var tsv = dsvParse(_d3Dsv.tsvParse);
-
-},{"d3-dsv":"5h1cU","./text.js":"6BVmR","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5h1cU":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-_parcelHelpers.export(exports, "dsvFormat", function () {
-  return _dsvJsDefault.default;
-});
-_parcelHelpers.export(exports, "csvParse", function () {
-  return _csvJs.csvParse;
-});
-_parcelHelpers.export(exports, "csvParseRows", function () {
-  return _csvJs.csvParseRows;
-});
-_parcelHelpers.export(exports, "csvFormat", function () {
-  return _csvJs.csvFormat;
-});
-_parcelHelpers.export(exports, "csvFormatBody", function () {
-  return _csvJs.csvFormatBody;
-});
-_parcelHelpers.export(exports, "csvFormatRows", function () {
-  return _csvJs.csvFormatRows;
-});
-_parcelHelpers.export(exports, "csvFormatRow", function () {
-  return _csvJs.csvFormatRow;
-});
-_parcelHelpers.export(exports, "csvFormatValue", function () {
-  return _csvJs.csvFormatValue;
-});
-_parcelHelpers.export(exports, "tsvParse", function () {
-  return _tsvJs.tsvParse;
-});
-_parcelHelpers.export(exports, "tsvParseRows", function () {
-  return _tsvJs.tsvParseRows;
-});
-_parcelHelpers.export(exports, "tsvFormat", function () {
-  return _tsvJs.tsvFormat;
-});
-_parcelHelpers.export(exports, "tsvFormatBody", function () {
-  return _tsvJs.tsvFormatBody;
-});
-_parcelHelpers.export(exports, "tsvFormatRows", function () {
-  return _tsvJs.tsvFormatRows;
-});
-_parcelHelpers.export(exports, "tsvFormatRow", function () {
-  return _tsvJs.tsvFormatRow;
-});
-_parcelHelpers.export(exports, "tsvFormatValue", function () {
-  return _tsvJs.tsvFormatValue;
-});
-_parcelHelpers.export(exports, "autoType", function () {
-  return _autoTypeJsDefault.default;
-});
-var _dsvJs = require("./dsv.js");
-var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
-var _csvJs = require("./csv.js");
-var _tsvJs = require("./tsv.js");
-var _autoTypeJs = require("./autoType.js");
-var _autoTypeJsDefault = _parcelHelpers.interopDefault(_autoTypeJs);
-
-},{"./dsv.js":"2BAM4","./csv.js":"1y7rN","./tsv.js":"2MrPF","./autoType.js":"2x8Ee","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2BAM4":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-var EOL = {}, EOF = {}, QUOTE = 34, NEWLINE = 10, RETURN = 13;
-function objectConverter(columns) {
-  return new Function("d", "return {" + columns.map(function (name, i) {
-    return JSON.stringify(name) + ": d[" + i + "] || \"\"";
-  }).join(",") + "}");
-}
-function customConverter(columns, f) {
-  var object = objectConverter(columns);
-  return function (row, i) {
-    return f(object(row), i, columns);
-  };
-}
-// Compute unique columns in order of discovery.
-function inferColumns(rows) {
-  var columnSet = Object.create(null), columns = [];
-  rows.forEach(function (row) {
-    for (var column in row) {
-      if (!((column in columnSet))) {
-        columns.push(columnSet[column] = column);
-      }
-    }
-  });
-  return columns;
-}
-function pad(value, width) {
-  var s = value + "", length = s.length;
-  return length < width ? new Array(width - length + 1).join(0) + s : s;
-}
-function formatYear(year) {
-  return year < 0 ? "-" + pad(-year, 6) : year > 9999 ? "+" + pad(year, 6) : pad(year, 4);
-}
-function formatDate(date) {
-  var hours = date.getUTCHours(), minutes = date.getUTCMinutes(), seconds = date.getUTCSeconds(), milliseconds = date.getUTCMilliseconds();
-  return isNaN(date) ? "Invalid Date" : formatYear(date.getUTCFullYear(), 4) + "-" + pad(date.getUTCMonth() + 1, 2) + "-" + pad(date.getUTCDate(), 2) + (milliseconds ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(milliseconds, 3) + "Z" : seconds ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "Z" : minutes || hours ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + "Z" : "");
-}
-exports.default = function (delimiter) {
-  var reFormat = new RegExp("[\"" + delimiter + "\n\r]"), DELIMITER = delimiter.charCodeAt(0);
-  function parse(text, f) {
-    var convert, columns, rows = parseRows(text, function (row, i) {
-      if (convert) return convert(row, i - 1);
-      (columns = row, convert = f ? customConverter(row, f) : objectConverter(row));
-    });
-    rows.columns = columns || [];
-    return rows;
-  }
-  function parseRows(text, f) {
-    var rows = [], // output rows
-    N = text.length, I = 0, // current character index
-    n = 0, // current line number
-    t, // current token
-    eof = N <= 0, // current token followed by EOF?
-    eol = false;
-    // current token followed by EOL?
-    // Strip the trailing newline.
-    if (text.charCodeAt(N - 1) === NEWLINE) --N;
-    if (text.charCodeAt(N - 1) === RETURN) --N;
-    function token() {
-      if (eof) return EOF;
-      if (eol) return (eol = false, EOL);
-      // Unescape quotes.
-      var i, j = I, c;
-      if (text.charCodeAt(j) === QUOTE) {
-        while (I++ < N && text.charCodeAt(I) !== QUOTE || text.charCodeAt(++I) === QUOTE) ;
-        if ((i = I) >= N) eof = true; else if ((c = text.charCodeAt(I++)) === NEWLINE) eol = true; else if (c === RETURN) {
-          eol = true;
-          if (text.charCodeAt(I) === NEWLINE) ++I;
-        }
-        return text.slice(j + 1, i - 1).replace(/""/g, "\"");
-      }
-      // Find next delimiter or newline.
-      while (I < N) {
-        if ((c = text.charCodeAt(i = I++)) === NEWLINE) eol = true; else if (c === RETURN) {
-          eol = true;
-          if (text.charCodeAt(I) === NEWLINE) ++I;
-        } else if (c !== DELIMITER) continue;
-        return text.slice(j, i);
-      }
-      // Return last token before EOF.
-      return (eof = true, text.slice(j, N));
-    }
-    while ((t = token()) !== EOF) {
-      var row = [];
-      while (t !== EOL && t !== EOF) (row.push(t), t = token());
-      if (f && (row = f(row, n++)) == null) continue;
-      rows.push(row);
-    }
-    return rows;
-  }
-  function preformatBody(rows, columns) {
-    return rows.map(function (row) {
-      return columns.map(function (column) {
-        return formatValue(row[column]);
-      }).join(delimiter);
-    });
-  }
-  function format(rows, columns) {
-    if (columns == null) columns = inferColumns(rows);
-    return [columns.map(formatValue).join(delimiter)].concat(preformatBody(rows, columns)).join("\n");
-  }
-  function formatBody(rows, columns) {
-    if (columns == null) columns = inferColumns(rows);
-    return preformatBody(rows, columns).join("\n");
-  }
-  function formatRows(rows) {
-    return rows.map(formatRow).join("\n");
-  }
-  function formatRow(row) {
-    return row.map(formatValue).join(delimiter);
-  }
-  function formatValue(value) {
-    return value == null ? "" : value instanceof Date ? formatDate(value) : reFormat.test(value += "") ? "\"" + value.replace(/"/g, "\"\"") + "\"" : value;
-  }
-  return {
-    parse: parse,
-    parseRows: parseRows,
-    format: format,
-    formatBody: formatBody,
-    formatRows: formatRows,
-    formatRow: formatRow,
-    formatValue: formatValue
-  };
-};
-
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"1y7rN":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-_parcelHelpers.export(exports, "csvParse", function () {
-  return csvParse;
-});
-_parcelHelpers.export(exports, "csvParseRows", function () {
-  return csvParseRows;
-});
-_parcelHelpers.export(exports, "csvFormat", function () {
-  return csvFormat;
-});
-_parcelHelpers.export(exports, "csvFormatBody", function () {
-  return csvFormatBody;
-});
-_parcelHelpers.export(exports, "csvFormatRows", function () {
-  return csvFormatRows;
-});
-_parcelHelpers.export(exports, "csvFormatRow", function () {
-  return csvFormatRow;
-});
-_parcelHelpers.export(exports, "csvFormatValue", function () {
-  return csvFormatValue;
-});
-var _dsvJs = require("./dsv.js");
-var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
-var csv = _dsvJsDefault.default(",");
-var csvParse = csv.parse;
-var csvParseRows = csv.parseRows;
-var csvFormat = csv.format;
-var csvFormatBody = csv.formatBody;
-var csvFormatRows = csv.formatRows;
-var csvFormatRow = csv.formatRow;
-var csvFormatValue = csv.formatValue;
-
-},{"./dsv.js":"2BAM4","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2MrPF":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-_parcelHelpers.export(exports, "tsvParse", function () {
-  return tsvParse;
-});
-_parcelHelpers.export(exports, "tsvParseRows", function () {
-  return tsvParseRows;
-});
-_parcelHelpers.export(exports, "tsvFormat", function () {
-  return tsvFormat;
-});
-_parcelHelpers.export(exports, "tsvFormatBody", function () {
-  return tsvFormatBody;
-});
-_parcelHelpers.export(exports, "tsvFormatRows", function () {
-  return tsvFormatRows;
-});
-_parcelHelpers.export(exports, "tsvFormatRow", function () {
-  return tsvFormatRow;
-});
-_parcelHelpers.export(exports, "tsvFormatValue", function () {
-  return tsvFormatValue;
-});
-var _dsvJs = require("./dsv.js");
-var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
-var tsv = _dsvJsDefault.default("\t");
-var tsvParse = tsv.parse;
-var tsvParseRows = tsv.parseRows;
-var tsvFormat = tsv.format;
-var tsvFormatBody = tsv.formatBody;
-var tsvFormatRows = tsv.formatRows;
-var tsvFormatRow = tsv.formatRow;
-var tsvFormatValue = tsv.formatValue;
-
-},{"./dsv.js":"2BAM4","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2x8Ee":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-function autoType(object) {
-  for (var key in object) {
-    var value = object[key].trim(), number, m;
-    if (!value) value = null; else if (value === "true") value = true; else if (value === "false") value = false; else if (value === "NaN") value = NaN; else if (!isNaN(number = +value)) value = number; else if (m = value.match(/^([-+]\d{2})?\d{4}(-\d{2}(-\d{2})?)?(T\d{2}:\d{2}(:\d{2}(\.\d{3})?)?(Z|[-+]\d{2}:\d{2})?)?$/)) {
-      if (fixtz && !!m[4] && !m[7]) value = value.replace(/-/g, "/").replace(/T/, " ");
-      value = new Date(value);
-    } else continue;
-    object[key] = value;
-  }
-  return object;
-}
-exports.default = autoType;
-// https://github.com/d3/d3-dsv/issues/45
-const fixtz = new Date("2019-01-01T00:00").getHours() || new Date("2019-07-01T00:00").getHours();
-
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6BVmR":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-function responseText(response) {
-  if (!response.ok) throw new Error(response.status + " " + response.statusText);
-  return response.text();
-}
-exports.default = function (input, init) {
-  return fetch(input, init).then(responseText);
-};
-
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"3hWTu":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-exports.default = function (input, init) {
-  return new Promise(function (resolve, reject) {
-    var image = new Image();
-    for (var key in init) image[key] = init[key];
-    image.onerror = reject;
-    image.onload = function () {
-      resolve(image);
-    };
-    image.src = input;
-  });
-};
-
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5WftU":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-function responseJson(response) {
-  if (!response.ok) throw new Error(response.status + " " + response.statusText);
-  if (response.status === 204 || response.status === 205) return;
-  return response.json();
-}
-exports.default = function (input, init) {
-  return fetch(input, init).then(responseJson);
-};
-
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2cds7":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-_parcelHelpers.export(exports, "html", function () {
-  return html;
-});
-_parcelHelpers.export(exports, "svg", function () {
-  return svg;
-});
-var _textJs = require("./text.js");
-var _textJsDefault = _parcelHelpers.interopDefault(_textJs);
-function parser(type) {
-  return (input, init) => _textJsDefault.default(input, init).then(text => new DOMParser().parseFromString(text, type));
-}
-exports.default = parser("application/xml");
-var html = parser("text/html");
-var svg = parser("image/svg+xml");
-
-},{"./text.js":"6BVmR","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"4Jj4f":[function(require,module,exports) {
-"use strict";
-var Refresh = require('react-refresh/runtime');
-function debounce(func, delay) {
-  if ("development" === 'test') {
-    return function (args) {
-      func.call(null, args);
-    };
-  } else {
-    var timeout = undefined;
-    return function (args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(function () {
-        timeout = undefined;
-        func.call(null, args);
-      }, delay);
-    };
-  }
-}
-var enqueueUpdate = debounce(function () {
-  Refresh.performReactRefresh();
-}, 30);
-// Everthing below is either adapted or copied from
-// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
-// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
-module.exports.prelude = function (module) {
-  window.$RefreshReg$ = function (type, id) {
-    Refresh.register(type, module.id + ' ' + id);
-  };
-  window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
-};
-module.exports.postlude = function (module) {
-  if (isReactRefreshBoundary(module.exports)) {
-    registerExportsForReactRefresh(module);
-    if (module.hot) {
-      module.hot.dispose(function (data) {
-        if (Refresh.hasUnrecoverableErrors()) {
-          window.location.reload();
-        }
-        data.prevExports = module.exports;
-      });
-      module.hot.accept(function (getParents) {
-        var prevExports = module.hot.data.prevExports;
-        var nextExports = module.exports;
-        // Since we just executed the code for it, it's possible
-        // that the new exports make it ineligible for being a boundary.
-        var isNoLongerABoundary = !isReactRefreshBoundary(nextExports);
-        // It can also become ineligible if its exports are incompatible
-        // with the previous exports.
-        // For example, if you add/remove/change exports, we'll want
-        // to re-execute the importing modules, and force those components
-        // to re-render. Similarly, if you convert a class component
-        // to a function, we want to invalidate the boundary.
-        var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
-        if (isNoLongerABoundary || didInvalidate) {
-          // We'll be conservative. The only case in which we won't do a full
-          // reload is if all parent modules are also refresh boundaries.
-          // In that case we'll add them to the current queue.
-          var parents = getParents();
-          if (parents.length === 0) {
-            // Looks like we bubbled to the root. Can't recover from that.
-            window.location.reload();
-            return;
-          }
-          return parents;
-        }
-        enqueueUpdate();
-      });
-    }
-  }
-};
-function isReactRefreshBoundary(exports) {
-  if (Refresh.isLikelyComponentType(exports)) {
-    return true;
-  }
-  if (exports == null || typeof exports !== 'object') {
-    // Exit if we can't iterate over exports.
-    return false;
-  }
-  var hasExports = false;
-  var areAllExportsComponents = true;
-  let isESM = ('__esModule' in exports);
-  for (var key in exports) {
-    hasExports = true;
-    if (key === '__esModule') {
-      continue;
-    }
-    var desc = Object.getOwnPropertyDescriptor(exports, key);
-    if (desc && desc.get && !isESM) {
-      // Don't invoke getters for CJS as they may have side effects.
-      return false;
-    }
-    var exportValue = exports[key];
-    if (!Refresh.isLikelyComponentType(exportValue)) {
-      areAllExportsComponents = false;
-    }
-  }
-  return hasExports && areAllExportsComponents;
-}
-function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
-  var prevSignature = getRefreshBoundarySignature(prevExports);
-  var nextSignature = getRefreshBoundarySignature(nextExports);
-  if (prevSignature.length !== nextSignature.length) {
-    return true;
-  }
-  for (var i = 0; i < nextSignature.length; i++) {
-    if (prevSignature[i] !== nextSignature[i]) {
-      return true;
-    }
-  }
-  return false;
-}
-// When this signature changes, it's unsafe to stop at this refresh boundary.
-function getRefreshBoundarySignature(exports) {
-  var signature = [];
-  signature.push(Refresh.getFamilyByType(exports));
-  if (exports == null || typeof exports !== 'object') {
-    // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return signature;
-  }
-  let isESM = ('__esModule' in exports);
-  for (var key in exports) {
-    if (key === '__esModule') {
-      continue;
-    }
-    var desc = Object.getOwnPropertyDescriptor(exports, key);
-    if (desc && desc.get && !isESM) {
-      // Don't invoke getters for CJS as they may have side effects.
-      continue;
-    }
-    var exportValue = exports[key];
-    signature.push(key);
-    signature.push(Refresh.getFamilyByType(exportValue));
-  }
-  return signature;
-}
-function registerExportsForReactRefresh(module) {
-  var exports = module.exports, id = module.id;
-  Refresh.register(exports, id + ' %exports%');
-  if (exports == null || typeof exports !== 'object') {
-    // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return;
-  }
-  let isESM = ('__esModule' in exports);
-  for (var key in exports) {
-    var desc = Object.getOwnPropertyDescriptor(exports, key);
-    if (desc && desc.get && !isESM) {
-      // Don't invoke getters for CJS as they may have side effects.
-      continue;
-    }
-    var exportValue = exports[key];
-    Refresh.register(exportValue, id + ' %exports% ' + key);
-  }
-}
-
-},{"react-refresh/runtime":"592mh"}],"56OKW":[function(require,module,exports) {
-var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  _parcelHelpers.export(exports, "useFetchSQL", function () {
-    return useFetchSQL;
-  });
-  var _d3Fetch = require("d3-fetch");
-  var _react = require("react");
-  var _s2 = $RefreshSig$();
-  const useFetchSQL = query => {
-    _s2();
-    var _s = $RefreshSig$();
-    const [data, setData] = _react.useState([]);
-    const [loading, setLoading] = _react.useState(true);
-    async function fetchUrl(url) {
-      const response = await _d3Fetch.json(url);
-      setData(response);
-      setLoading(false);
-    }
-    function initializeQuery(query) {
-      _s();
-      let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + encodeURIComponent(query);
-      _react.useEffect(() => {
-        fetchUrl(queryURL);
-      }, []);
-    }
-    _s(initializeQuery, "OD7bBpZva5O2jO+Puf00hKivP7c=");
-    initializeQuery(query);
-    function getNewQuery(newQuery) {
-      setData([]);
-      setLoading(true);
-      let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + encodeURIComponent(newQuery);
-      async function fetchUrl(url) {
-        const response = await _d3Fetch.json(url);
-        setData(response);
-        setLoading(false);
-      }
-      fetchUrl(queryURL);
-    }
-    return [data, loading, getNewQuery];
-  };
-  _s2(useFetchSQL, "BKK8MGglYVFL+UMuvmfBDh5RmNg=");
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"d3-fetch":"7Gs6I","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4RKET":[function() {},{}],"1PMSK":[function(require,module,exports) {
+},{"react":"3b2NM","react-router-dom":"1PMSK","react-router":"3v97x","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./Checkboxes":"14f0m","./hooks/useFetch":"5YU3r","./hooks/useFetchSQL":"56OKW","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"1PMSK":[function(require,module,exports) {
 "use strict";
 if ("development" === "production") {
   module.exports = require("./cjs/react-router-dom.min.js");
@@ -31236,7 +30519,7 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 
 module.exports = hoistNonReactStatics;
 
-},{"react-is":"68QIU"}],"14f0m":[function(require,module,exports) {
+},{"react-is":"68QIU"}],"5GTF8":[function() {},{}],"14f0m":[function(require,module,exports) {
 var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -31262,7 +30545,9 @@ try {
         from 
             Species
         Group By
-            Category;`);
+            Category
+        ORDER BY
+            amnt DESC;`);
     const [checkboxOptions, updateCheckboxOptions] = _react.useState({});
     function addQueryWhereClause(checkboxOptions) {
       let whereClause = " Where 1=1";
@@ -31292,16 +30577,20 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 52,
+          lineNumber: 54,
           columnNumber: 9
         }
       }, speciesCategories.map(function (categoryLine) {
         return (
           /*#__PURE__*/_reactDefault.default.createElement("div", {
+            style: {
+              padding: "10px",
+              display: 'inline-block'
+            },
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 55,
+              lineNumber: 57,
               columnNumber: 21
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -31309,29 +30598,33 @@ try {
             id: categoryLine.Category,
             key: categoryLine.Category,
             defaultChecked: "true",
+            color: "white",
             name: categoryLine.Category,
             value: categoryLine.Category,
             onClick: clickfunction,
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 56,
+              lineNumber: 58,
               columnNumber: 25
             }
           }), /*#__PURE__*/_reactDefault.default.createElement("label", {
             for: categoryLine.Category,
+            style: {
+              color: "#e0e0e0"
+            },
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 58,
+              lineNumber: 60,
               columnNumber: 25
             }
           }, categoryLine.Category + " (" + categoryLine.amnt + " species)"), /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 58,
-              columnNumber: 132
+              lineNumber: 62,
+              columnNumber: 33
             }
           }))
         );
@@ -31351,6 +30644,725 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-router-dom":"1PMSK","react-router":"3v97x","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","./hooks/useFetchSQL":"56OKW","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5GTF8":[function() {},{}],"4RKET":[function() {},{}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequire2d18")
+},{"react":"3b2NM","react-router-dom":"1PMSK","react-router":"3v97x","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","./hooks/useFetchSQL":"56OKW","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./app.css":"4RKET"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "useFetch", function () {
+    return useFetch;
+  });
+  var _d3Fetch = require("d3-fetch");
+  var _react = require("react");
+  var _s = $RefreshSig$();
+  const useFetch = url => {
+    _s();
+    const [data, setData] = _react.useState([]);
+    const [loading, setLoading] = _react.useState(true);
+    async function fetchUrl() {
+      const response = await _d3Fetch.csv(url);
+      setData(response);
+      setLoading(false);
+    }
+    _react.useEffect(() => {
+      fetchUrl();
+    }, []);
+    return [data, loading];
+  };
+  _s(useFetch, "YP7e7Smzxlgf2d3MqLcgRZjo83U=");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"d3-fetch":"7Gs6I","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"7Gs6I":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "blob", function () {
+  return _blobJsDefault.default;
+});
+_parcelHelpers.export(exports, "buffer", function () {
+  return _bufferJsDefault.default;
+});
+_parcelHelpers.export(exports, "dsv", function () {
+  return _dsvJsDefault.default;
+});
+_parcelHelpers.export(exports, "csv", function () {
+  return _dsvJs.csv;
+});
+_parcelHelpers.export(exports, "tsv", function () {
+  return _dsvJs.tsv;
+});
+_parcelHelpers.export(exports, "image", function () {
+  return _imageJsDefault.default;
+});
+_parcelHelpers.export(exports, "json", function () {
+  return _jsonJsDefault.default;
+});
+_parcelHelpers.export(exports, "text", function () {
+  return _textJsDefault.default;
+});
+_parcelHelpers.export(exports, "xml", function () {
+  return _xmlJsDefault.default;
+});
+_parcelHelpers.export(exports, "html", function () {
+  return _xmlJs.html;
+});
+_parcelHelpers.export(exports, "svg", function () {
+  return _xmlJs.svg;
+});
+var _blobJs = require("./blob.js");
+var _blobJsDefault = _parcelHelpers.interopDefault(_blobJs);
+var _bufferJs = require("./buffer.js");
+var _bufferJsDefault = _parcelHelpers.interopDefault(_bufferJs);
+var _dsvJs = require("./dsv.js");
+var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
+var _imageJs = require("./image.js");
+var _imageJsDefault = _parcelHelpers.interopDefault(_imageJs);
+var _jsonJs = require("./json.js");
+var _jsonJsDefault = _parcelHelpers.interopDefault(_jsonJs);
+var _textJs = require("./text.js");
+var _textJsDefault = _parcelHelpers.interopDefault(_textJs);
+var _xmlJs = require("./xml.js");
+var _xmlJsDefault = _parcelHelpers.interopDefault(_xmlJs);
+
+},{"./blob.js":"7vfIK","./buffer.js":"4ll8L","./dsv.js":"11j9j","./image.js":"3hWTu","./json.js":"5WftU","./text.js":"6BVmR","./xml.js":"2cds7","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"7vfIK":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function responseBlob(response) {
+  if (!response.ok) throw new Error(response.status + " " + response.statusText);
+  return response.blob();
+}
+exports.default = function (input, init) {
+  return fetch(input, init).then(responseBlob);
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5gA8y":[function(require,module,exports) {
+"use strict";
+
+exports.interopDefault = function (a) {
+  return a && a.__esModule ? a : {
+    default: a
+  };
+};
+
+exports.defineInteropFlag = function (a) {
+  Object.defineProperty(a, '__esModule', {
+    value: true
+  });
+};
+
+exports.exportAll = function (source, dest) {
+  Object.keys(source).forEach(function (key) {
+    if (key === 'default' || key === '__esModule') {
+      return;
+    } // Skip duplicate re-exports when they have the same value.
+
+
+    if (key in dest && dest[key] === source[key]) {
+      return;
+    }
+
+    Object.defineProperty(dest, key, {
+      enumerable: true,
+      get: function () {
+        return source[key];
+      }
+    });
+  });
+  return dest;
+};
+
+exports.export = function (dest, destName, get) {
+  Object.defineProperty(dest, destName, {
+    enumerable: true,
+    get: get
+  });
+};
+},{}],"4ll8L":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function responseArrayBuffer(response) {
+  if (!response.ok) throw new Error(response.status + " " + response.statusText);
+  return response.arrayBuffer();
+}
+exports.default = function (input, init) {
+  return fetch(input, init).then(responseArrayBuffer);
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"11j9j":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "csv", function () {
+  return csv;
+});
+_parcelHelpers.export(exports, "tsv", function () {
+  return tsv;
+});
+var _d3Dsv = require("d3-dsv");
+var _textJs = require("./text.js");
+var _textJsDefault = _parcelHelpers.interopDefault(_textJs);
+function dsvParse(parse) {
+  return function (input, init, row) {
+    if (arguments.length === 2 && typeof init === "function") (row = init, init = undefined);
+    return _textJsDefault.default(input, init).then(function (response) {
+      return parse(response, row);
+    });
+  };
+}
+function dsv(delimiter, input, init, row) {
+  if (arguments.length === 3 && typeof init === "function") (row = init, init = undefined);
+  var format = _d3Dsv.dsvFormat(delimiter);
+  return _textJsDefault.default(input, init).then(function (response) {
+    return format.parse(response, row);
+  });
+}
+exports.default = dsv;
+var csv = dsvParse(_d3Dsv.csvParse);
+var tsv = dsvParse(_d3Dsv.tsvParse);
+
+},{"d3-dsv":"5h1cU","./text.js":"6BVmR","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5h1cU":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "dsvFormat", function () {
+  return _dsvJsDefault.default;
+});
+_parcelHelpers.export(exports, "csvParse", function () {
+  return _csvJs.csvParse;
+});
+_parcelHelpers.export(exports, "csvParseRows", function () {
+  return _csvJs.csvParseRows;
+});
+_parcelHelpers.export(exports, "csvFormat", function () {
+  return _csvJs.csvFormat;
+});
+_parcelHelpers.export(exports, "csvFormatBody", function () {
+  return _csvJs.csvFormatBody;
+});
+_parcelHelpers.export(exports, "csvFormatRows", function () {
+  return _csvJs.csvFormatRows;
+});
+_parcelHelpers.export(exports, "csvFormatRow", function () {
+  return _csvJs.csvFormatRow;
+});
+_parcelHelpers.export(exports, "csvFormatValue", function () {
+  return _csvJs.csvFormatValue;
+});
+_parcelHelpers.export(exports, "tsvParse", function () {
+  return _tsvJs.tsvParse;
+});
+_parcelHelpers.export(exports, "tsvParseRows", function () {
+  return _tsvJs.tsvParseRows;
+});
+_parcelHelpers.export(exports, "tsvFormat", function () {
+  return _tsvJs.tsvFormat;
+});
+_parcelHelpers.export(exports, "tsvFormatBody", function () {
+  return _tsvJs.tsvFormatBody;
+});
+_parcelHelpers.export(exports, "tsvFormatRows", function () {
+  return _tsvJs.tsvFormatRows;
+});
+_parcelHelpers.export(exports, "tsvFormatRow", function () {
+  return _tsvJs.tsvFormatRow;
+});
+_parcelHelpers.export(exports, "tsvFormatValue", function () {
+  return _tsvJs.tsvFormatValue;
+});
+_parcelHelpers.export(exports, "autoType", function () {
+  return _autoTypeJsDefault.default;
+});
+var _dsvJs = require("./dsv.js");
+var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
+var _csvJs = require("./csv.js");
+var _tsvJs = require("./tsv.js");
+var _autoTypeJs = require("./autoType.js");
+var _autoTypeJsDefault = _parcelHelpers.interopDefault(_autoTypeJs);
+
+},{"./dsv.js":"2BAM4","./csv.js":"1y7rN","./tsv.js":"2MrPF","./autoType.js":"2x8Ee","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2BAM4":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+var EOL = {}, EOF = {}, QUOTE = 34, NEWLINE = 10, RETURN = 13;
+function objectConverter(columns) {
+  return new Function("d", "return {" + columns.map(function (name, i) {
+    return JSON.stringify(name) + ": d[" + i + "] || \"\"";
+  }).join(",") + "}");
+}
+function customConverter(columns, f) {
+  var object = objectConverter(columns);
+  return function (row, i) {
+    return f(object(row), i, columns);
+  };
+}
+// Compute unique columns in order of discovery.
+function inferColumns(rows) {
+  var columnSet = Object.create(null), columns = [];
+  rows.forEach(function (row) {
+    for (var column in row) {
+      if (!((column in columnSet))) {
+        columns.push(columnSet[column] = column);
+      }
+    }
+  });
+  return columns;
+}
+function pad(value, width) {
+  var s = value + "", length = s.length;
+  return length < width ? new Array(width - length + 1).join(0) + s : s;
+}
+function formatYear(year) {
+  return year < 0 ? "-" + pad(-year, 6) : year > 9999 ? "+" + pad(year, 6) : pad(year, 4);
+}
+function formatDate(date) {
+  var hours = date.getUTCHours(), minutes = date.getUTCMinutes(), seconds = date.getUTCSeconds(), milliseconds = date.getUTCMilliseconds();
+  return isNaN(date) ? "Invalid Date" : formatYear(date.getUTCFullYear(), 4) + "-" + pad(date.getUTCMonth() + 1, 2) + "-" + pad(date.getUTCDate(), 2) + (milliseconds ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "." + pad(milliseconds, 3) + "Z" : seconds ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + ":" + pad(seconds, 2) + "Z" : minutes || hours ? "T" + pad(hours, 2) + ":" + pad(minutes, 2) + "Z" : "");
+}
+exports.default = function (delimiter) {
+  var reFormat = new RegExp("[\"" + delimiter + "\n\r]"), DELIMITER = delimiter.charCodeAt(0);
+  function parse(text, f) {
+    var convert, columns, rows = parseRows(text, function (row, i) {
+      if (convert) return convert(row, i - 1);
+      (columns = row, convert = f ? customConverter(row, f) : objectConverter(row));
+    });
+    rows.columns = columns || [];
+    return rows;
+  }
+  function parseRows(text, f) {
+    var rows = [], // output rows
+    N = text.length, I = 0, // current character index
+    n = 0, // current line number
+    t, // current token
+    eof = N <= 0, // current token followed by EOF?
+    eol = false;
+    // current token followed by EOL?
+    // Strip the trailing newline.
+    if (text.charCodeAt(N - 1) === NEWLINE) --N;
+    if (text.charCodeAt(N - 1) === RETURN) --N;
+    function token() {
+      if (eof) return EOF;
+      if (eol) return (eol = false, EOL);
+      // Unescape quotes.
+      var i, j = I, c;
+      if (text.charCodeAt(j) === QUOTE) {
+        while (I++ < N && text.charCodeAt(I) !== QUOTE || text.charCodeAt(++I) === QUOTE) ;
+        if ((i = I) >= N) eof = true; else if ((c = text.charCodeAt(I++)) === NEWLINE) eol = true; else if (c === RETURN) {
+          eol = true;
+          if (text.charCodeAt(I) === NEWLINE) ++I;
+        }
+        return text.slice(j + 1, i - 1).replace(/""/g, "\"");
+      }
+      // Find next delimiter or newline.
+      while (I < N) {
+        if ((c = text.charCodeAt(i = I++)) === NEWLINE) eol = true; else if (c === RETURN) {
+          eol = true;
+          if (text.charCodeAt(I) === NEWLINE) ++I;
+        } else if (c !== DELIMITER) continue;
+        return text.slice(j, i);
+      }
+      // Return last token before EOF.
+      return (eof = true, text.slice(j, N));
+    }
+    while ((t = token()) !== EOF) {
+      var row = [];
+      while (t !== EOL && t !== EOF) (row.push(t), t = token());
+      if (f && (row = f(row, n++)) == null) continue;
+      rows.push(row);
+    }
+    return rows;
+  }
+  function preformatBody(rows, columns) {
+    return rows.map(function (row) {
+      return columns.map(function (column) {
+        return formatValue(row[column]);
+      }).join(delimiter);
+    });
+  }
+  function format(rows, columns) {
+    if (columns == null) columns = inferColumns(rows);
+    return [columns.map(formatValue).join(delimiter)].concat(preformatBody(rows, columns)).join("\n");
+  }
+  function formatBody(rows, columns) {
+    if (columns == null) columns = inferColumns(rows);
+    return preformatBody(rows, columns).join("\n");
+  }
+  function formatRows(rows) {
+    return rows.map(formatRow).join("\n");
+  }
+  function formatRow(row) {
+    return row.map(formatValue).join(delimiter);
+  }
+  function formatValue(value) {
+    return value == null ? "" : value instanceof Date ? formatDate(value) : reFormat.test(value += "") ? "\"" + value.replace(/"/g, "\"\"") + "\"" : value;
+  }
+  return {
+    parse: parse,
+    parseRows: parseRows,
+    format: format,
+    formatBody: formatBody,
+    formatRows: formatRows,
+    formatRow: formatRow,
+    formatValue: formatValue
+  };
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"1y7rN":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "csvParse", function () {
+  return csvParse;
+});
+_parcelHelpers.export(exports, "csvParseRows", function () {
+  return csvParseRows;
+});
+_parcelHelpers.export(exports, "csvFormat", function () {
+  return csvFormat;
+});
+_parcelHelpers.export(exports, "csvFormatBody", function () {
+  return csvFormatBody;
+});
+_parcelHelpers.export(exports, "csvFormatRows", function () {
+  return csvFormatRows;
+});
+_parcelHelpers.export(exports, "csvFormatRow", function () {
+  return csvFormatRow;
+});
+_parcelHelpers.export(exports, "csvFormatValue", function () {
+  return csvFormatValue;
+});
+var _dsvJs = require("./dsv.js");
+var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
+var csv = _dsvJsDefault.default(",");
+var csvParse = csv.parse;
+var csvParseRows = csv.parseRows;
+var csvFormat = csv.format;
+var csvFormatBody = csv.formatBody;
+var csvFormatRows = csv.formatRows;
+var csvFormatRow = csv.formatRow;
+var csvFormatValue = csv.formatValue;
+
+},{"./dsv.js":"2BAM4","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2MrPF":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "tsvParse", function () {
+  return tsvParse;
+});
+_parcelHelpers.export(exports, "tsvParseRows", function () {
+  return tsvParseRows;
+});
+_parcelHelpers.export(exports, "tsvFormat", function () {
+  return tsvFormat;
+});
+_parcelHelpers.export(exports, "tsvFormatBody", function () {
+  return tsvFormatBody;
+});
+_parcelHelpers.export(exports, "tsvFormatRows", function () {
+  return tsvFormatRows;
+});
+_parcelHelpers.export(exports, "tsvFormatRow", function () {
+  return tsvFormatRow;
+});
+_parcelHelpers.export(exports, "tsvFormatValue", function () {
+  return tsvFormatValue;
+});
+var _dsvJs = require("./dsv.js");
+var _dsvJsDefault = _parcelHelpers.interopDefault(_dsvJs);
+var tsv = _dsvJsDefault.default("\t");
+var tsvParse = tsv.parse;
+var tsvParseRows = tsv.parseRows;
+var tsvFormat = tsv.format;
+var tsvFormatBody = tsv.formatBody;
+var tsvFormatRows = tsv.formatRows;
+var tsvFormatRow = tsv.formatRow;
+var tsvFormatValue = tsv.formatValue;
+
+},{"./dsv.js":"2BAM4","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2x8Ee":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function autoType(object) {
+  for (var key in object) {
+    var value = object[key].trim(), number, m;
+    if (!value) value = null; else if (value === "true") value = true; else if (value === "false") value = false; else if (value === "NaN") value = NaN; else if (!isNaN(number = +value)) value = number; else if (m = value.match(/^([-+]\d{2})?\d{4}(-\d{2}(-\d{2})?)?(T\d{2}:\d{2}(:\d{2}(\.\d{3})?)?(Z|[-+]\d{2}:\d{2})?)?$/)) {
+      if (fixtz && !!m[4] && !m[7]) value = value.replace(/-/g, "/").replace(/T/, " ");
+      value = new Date(value);
+    } else continue;
+    object[key] = value;
+  }
+  return object;
+}
+exports.default = autoType;
+// https://github.com/d3/d3-dsv/issues/45
+const fixtz = new Date("2019-01-01T00:00").getHours() || new Date("2019-07-01T00:00").getHours();
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"6BVmR":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function responseText(response) {
+  if (!response.ok) throw new Error(response.status + " " + response.statusText);
+  return response.text();
+}
+exports.default = function (input, init) {
+  return fetch(input, init).then(responseText);
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"3hWTu":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+exports.default = function (input, init) {
+  return new Promise(function (resolve, reject) {
+    var image = new Image();
+    for (var key in init) image[key] = init[key];
+    image.onerror = reject;
+    image.onload = function () {
+      resolve(image);
+    };
+    image.src = input;
+  });
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"5WftU":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+function responseJson(response) {
+  if (!response.ok) throw new Error(response.status + " " + response.statusText);
+  if (response.status === 204 || response.status === 205) return;
+  return response.json();
+}
+exports.default = function (input, init) {
+  return fetch(input, init).then(responseJson);
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2cds7":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "html", function () {
+  return html;
+});
+_parcelHelpers.export(exports, "svg", function () {
+  return svg;
+});
+var _textJs = require("./text.js");
+var _textJsDefault = _parcelHelpers.interopDefault(_textJs);
+function parser(type) {
+  return (input, init) => _textJsDefault.default(input, init).then(text => new DOMParser().parseFromString(text, type));
+}
+exports.default = parser("application/xml");
+var html = parser("text/html");
+var svg = parser("image/svg+xml");
+
+},{"./text.js":"6BVmR","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"4Jj4f":[function(require,module,exports) {
+"use strict";
+var Refresh = require('react-refresh/runtime');
+function debounce(func, delay) {
+  if ("development" === 'test') {
+    return function (args) {
+      func.call(null, args);
+    };
+  } else {
+    var timeout = undefined;
+    return function (args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(function () {
+        timeout = undefined;
+        func.call(null, args);
+      }, delay);
+    };
+  }
+}
+var enqueueUpdate = debounce(function () {
+  Refresh.performReactRefresh();
+}, 30);
+// Everthing below is either adapted or copied from
+// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
+// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
+module.exports.prelude = function (module) {
+  window.$RefreshReg$ = function (type, id) {
+    Refresh.register(type, module.id + ' ' + id);
+  };
+  window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
+};
+module.exports.postlude = function (module) {
+  if (isReactRefreshBoundary(module.exports)) {
+    registerExportsForReactRefresh(module);
+    if (module.hot) {
+      module.hot.dispose(function (data) {
+        if (Refresh.hasUnrecoverableErrors()) {
+          window.location.reload();
+        }
+        data.prevExports = module.exports;
+      });
+      module.hot.accept(function (getParents) {
+        var prevExports = module.hot.data.prevExports;
+        var nextExports = module.exports;
+        // Since we just executed the code for it, it's possible
+        // that the new exports make it ineligible for being a boundary.
+        var isNoLongerABoundary = !isReactRefreshBoundary(nextExports);
+        // It can also become ineligible if its exports are incompatible
+        // with the previous exports.
+        // For example, if you add/remove/change exports, we'll want
+        // to re-execute the importing modules, and force those components
+        // to re-render. Similarly, if you convert a class component
+        // to a function, we want to invalidate the boundary.
+        var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
+        if (isNoLongerABoundary || didInvalidate) {
+          // We'll be conservative. The only case in which we won't do a full
+          // reload is if all parent modules are also refresh boundaries.
+          // In that case we'll add them to the current queue.
+          var parents = getParents();
+          if (parents.length === 0) {
+            // Looks like we bubbled to the root. Can't recover from that.
+            window.location.reload();
+            return;
+          }
+          return parents;
+        }
+        enqueueUpdate();
+      });
+    }
+  }
+};
+function isReactRefreshBoundary(exports) {
+  if (Refresh.isLikelyComponentType(exports)) {
+    return true;
+  }
+  if (exports == null || typeof exports !== 'object') {
+    // Exit if we can't iterate over exports.
+    return false;
+  }
+  var hasExports = false;
+  var areAllExportsComponents = true;
+  let isESM = ('__esModule' in exports);
+  for (var key in exports) {
+    hasExports = true;
+    if (key === '__esModule') {
+      continue;
+    }
+    var desc = Object.getOwnPropertyDescriptor(exports, key);
+    if (desc && desc.get && !isESM) {
+      // Don't invoke getters for CJS as they may have side effects.
+      return false;
+    }
+    var exportValue = exports[key];
+    if (!Refresh.isLikelyComponentType(exportValue)) {
+      areAllExportsComponents = false;
+    }
+  }
+  return hasExports && areAllExportsComponents;
+}
+function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
+  var prevSignature = getRefreshBoundarySignature(prevExports);
+  var nextSignature = getRefreshBoundarySignature(nextExports);
+  if (prevSignature.length !== nextSignature.length) {
+    return true;
+  }
+  for (var i = 0; i < nextSignature.length; i++) {
+    if (prevSignature[i] !== nextSignature[i]) {
+      return true;
+    }
+  }
+  return false;
+}
+// When this signature changes, it's unsafe to stop at this refresh boundary.
+function getRefreshBoundarySignature(exports) {
+  var signature = [];
+  signature.push(Refresh.getFamilyByType(exports));
+  if (exports == null || typeof exports !== 'object') {
+    // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return signature;
+  }
+  let isESM = ('__esModule' in exports);
+  for (var key in exports) {
+    if (key === '__esModule') {
+      continue;
+    }
+    var desc = Object.getOwnPropertyDescriptor(exports, key);
+    if (desc && desc.get && !isESM) {
+      // Don't invoke getters for CJS as they may have side effects.
+      continue;
+    }
+    var exportValue = exports[key];
+    signature.push(key);
+    signature.push(Refresh.getFamilyByType(exportValue));
+  }
+  return signature;
+}
+function registerExportsForReactRefresh(module) {
+  var exports = module.exports, id = module.id;
+  Refresh.register(exports, id + ' %exports%');
+  if (exports == null || typeof exports !== 'object') {
+    // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return;
+  }
+  let isESM = ('__esModule' in exports);
+  for (var key in exports) {
+    var desc = Object.getOwnPropertyDescriptor(exports, key);
+    if (desc && desc.get && !isESM) {
+      // Don't invoke getters for CJS as they may have side effects.
+      continue;
+    }
+    var exportValue = exports[key];
+    Refresh.register(exportValue, id + ' %exports% ' + key);
+  }
+}
+
+},{"react-refresh/runtime":"592mh"}],"56OKW":[function(require,module,exports) {
+var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  _parcelHelpers.export(exports, "useFetchSQL", function () {
+    return useFetchSQL;
+  });
+  var _d3Fetch = require("d3-fetch");
+  var _react = require("react");
+  var _s2 = $RefreshSig$();
+  const useFetchSQL = query => {
+    _s2();
+    var _s = $RefreshSig$();
+    const [data, setData] = _react.useState([]);
+    const [loading, setLoading] = _react.useState(true);
+    async function fetchUrl(url) {
+      const response = await _d3Fetch.json(url);
+      setData(response);
+      setLoading(false);
+    }
+    function initializeQuery(query) {
+      _s();
+      let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + encodeURIComponent(query);
+      _react.useEffect(() => {
+        fetchUrl(queryURL);
+      }, []);
+    }
+    _s(initializeQuery, "OD7bBpZva5O2jO+Puf00hKivP7c=");
+    initializeQuery(query);
+    function getNewQuery(newQuery) {
+      setData([]);
+      setLoading(true);
+      let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + encodeURIComponent(newQuery);
+      async function fetchUrl(url) {
+        const response = await _d3Fetch.json(url);
+        setData(response);
+        setLoading(false);
+      }
+      fetchUrl(queryURL);
+    }
+    return [data, loading, getNewQuery];
+  };
+  _s2(useFetchSQL, "BKK8MGglYVFL+UMuvmfBDh5RmNg=");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"d3-fetch":"7Gs6I","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4RKET":[function() {},{}],"4RKET":[function() {},{}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequire2d18")
 
 //# sourceMappingURL=index.3fafb3e2.js.map

@@ -59,7 +59,7 @@ const App = () => {
 
   return (
     <div>
-      <div className="card" id="titlecard" style={{ width: "70%" }}>
+      <div className="card" id="titlecard" style={{ width: "70%", margin: "auto", marginBottom: "20px"}}>
         <h1>Info 430 Final Project</h1>
         <p>By: Michael, Olivia, Pranav, and Ramiro</p>
       </div>
