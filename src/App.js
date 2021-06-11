@@ -11,6 +11,23 @@ import './app.css';
 
 const App = () => {
   const initialSpeciesquery = "Select Top 50 * from Species";
+  /*const initialSpeciesquery = `
+    WITH myTable as(
+      Select
+          *, 
+          ROW_NUMBER() OVER(
+              Order by Species_ID ASC
+          ) as rownum 
+      from 
+          Species
+    )
+    Select 
+      * 
+    from 
+      myTable 
+    WHERE
+      rownum between 1 and 50
+  `;*/
   const [speciesData, speciesLoading, changeSpeciesDataQuery] = useFetchSQL(initialSpeciesquery);
 
   console.log(changeSpeciesDataQuery);
@@ -21,7 +38,7 @@ const App = () => {
   console.log(speciesData);
   
   const datasample = speciesData//.slice(10000, 10020);
-  
+
   function searchfunction() {
     const [searchTerm, setSearchTerm] = React.useState("");
     const [searchResults, setSearchResults] = React.useState([]);
@@ -54,7 +71,7 @@ const App = () => {
       </div>
       <SearchBar/>
       <Checkboxes  queryChange={changeSpeciesDataQuery} originalQuery={initialSpeciesquery}/>
-      <Cards datasample={datasample} parksData={parksData}/>
+      <Cards datasample={datasample} parksData={parksData} loading={speciesLoading}/>
     </div>
   );
 };

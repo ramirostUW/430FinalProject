@@ -21,6 +21,7 @@ const useFetchSQL = (query) => {
   initializeQuery(query);
 
   function getNewQuery(newQuery){
+    console.log(newQuery);
     setData([]);
     setLoading(true);
     let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + encodeURIComponent(newQuery);

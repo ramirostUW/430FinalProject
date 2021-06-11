@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useFetch } from "./hooks/useFetch";
 import { useFetchSQL } from "./hooks/useFetchSQL";
+import load from 'url:./imgs/load.gif';
 import './app.css';
 
 const Checkboxes = (props) => {
@@ -57,7 +58,10 @@ const Checkboxes = (props) => {
         queryUpdater(originalQuery + whereClause);
     }
     return (
-        <form>
+        <div>
+        {speciesCategoriesLoading &&  <img src={load} style={{margin:"15px"}}
+        alt="Loading checkboxes" width="75" height="75" />}
+        {!speciesCategoriesLoading && <form>
             {speciesCategories.map(function (categoryLine) {
                 let leftrightpadding = (maxCategoryStringLength - categoryLine.Category.length + 5) + "px";
                 /*
@@ -77,6 +81,7 @@ const Checkboxes = (props) => {
                     paddingLeft:leftrightpadding, paddingRight:leftrightpadding}} >
               */
                 return (
+                    
                     <div style={{padding: "10px",  display : 'inline-block', 
                     paddingLeft:leftrightpadding, paddingRight:leftrightpadding}} >
                         <input type="checkbox" id={categoryLine.Category} style={{verticalAlign:"left"}}
@@ -84,11 +89,12 @@ const Checkboxes = (props) => {
                             name={categoryLine.Category} value={categoryLine.Category} onClick={clickfunction} />
                         <label for={categoryLine.Category} style={{color: "#e0e0e0", verticalAlign:"left"}}>
                             {categoryLine.Category + " (" + categoryLine.amnt + " species)"}
-                        </label><br />
+                        </label><br />  
                     </div>
                 )
             })}
-        </form>
+        </form>}
+        </div>
     )
 }
 

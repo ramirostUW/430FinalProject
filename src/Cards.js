@@ -8,11 +8,14 @@ import Checkboxes from './Checkboxes';
 import { useFetch } from "./hooks/useFetch";
 import { useFetchSQL } from "./hooks/useFetchSQL";
 import './app.css';
+import load from 'url:./imgs/load.gif';
 
 
 const Cards = (props) => {
     //<Cards datasample={datasample} parksData={parksData}/>
+    //https://www.dropbox.com/s/c19vm7ttdpek8qr/loading-buffering.gif?dl=1
     let datasample = props.datasample;
+    let loading = props.loading;
     let parksData = props.parksData;
     let dataChunks = chunk(datasample, 3);
 
@@ -31,6 +34,10 @@ const Cards = (props) => {
 
     const rows = dataChunks.map((dataChunk, index) => {
         const dataCols = dataChunk.map((sample, index) => {
+            if(sample["Abundance"] === "NULL")
+            {
+                sample["Abundance"] = "Unknown";
+            }
             return (
                 <Col xs="4" key={"card" + index}>
                     <div className="card">
@@ -53,7 +60,11 @@ const Cards = (props) => {
         return <Row key={index}>{dataCols}</Row>
     });
 
-    return <Container>{rows}</Container>
+    return <Container>
+        {loading && <img src={load} style={{ margin: "15px" }}
+            alt="Loading checkboxes" width="75" height="75" />}
+        {!loading && rows}
+    </Container>
     /*
     let originalReturnVal = (
         <div id="col">

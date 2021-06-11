@@ -32,6 +32,23 @@ Create table ConservationStatus (
 )
 
 Select * from ConservationStatus;
+WITH myTable as(
+      Select
+          *, 
+          ROW_NUMBER() OVER(
+              Order by Species_ID ASC
+          ) as rownum 
+      from 
+          Species
+    )
+    Select 
+      * 
+    from 
+      myTable 
+    WHERE
+      rownum between 1 and 50
+   AND category != 'Mammal'
+
 Select Distinct Category from Species;
 
 Select Top 50 * from Species Where 1=1 AND category != 'Nonvascular Plant'
