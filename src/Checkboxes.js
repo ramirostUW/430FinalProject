@@ -39,7 +39,6 @@ const Checkboxes = (props) => {
         if(newCheckboxOptions[checkboxValue] === undefined)
         {
             newCheckboxOptions[checkboxValue] = false;
-            console.log(checkboxValue);
         }
         else
         {
@@ -49,8 +48,6 @@ const Checkboxes = (props) => {
         updateCheckboxOptions(newCheckboxOptions);
         queryUpdater(originalQuery + whereClause);
     }
-
-    console.log(checkboxOptions);
     return (
         <form>
             {speciesCategories.map(function (categoryLine) {

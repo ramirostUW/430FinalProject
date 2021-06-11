@@ -13,8 +13,7 @@ const useFetchSQL = (query) => {
     setLoading(false);
   }
   function initializeQuery(query){
-    let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + query.replaceAll(" ", "%20");
-    console.log(queryURL);
+    let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + encodeURIComponent(query);
     useEffect(() => {
       fetchUrl(queryURL);
     }, []);
@@ -24,7 +23,7 @@ const useFetchSQL = (query) => {
   function getNewQuery(newQuery){
     setData([]);
     setLoading(true);
-    let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + newQuery.replaceAll(" ", "%20");
+    let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + encodeURIComponent(newQuery);
     async function fetchUrl(url) {
       const response = await json(url);
       setData(response);

@@ -27273,8 +27273,7 @@ try {
     }
     function initializeQuery(query) {
       _s();
-      let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + query.replaceAll(" ", "%20");
-      console.log(queryURL);
+      let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + encodeURIComponent(query);
       _react.useEffect(() => {
         fetchUrl(queryURL);
       }, []);
@@ -27284,7 +27283,7 @@ try {
     function getNewQuery(newQuery) {
       setData([]);
       setLoading(true);
-      let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + newQuery.replaceAll(" ", "%20");
+      let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + encodeURIComponent(newQuery);
       async function fetchUrl(url) {
         const response = await _d3Fetch.json(url);
         setData(response);
@@ -31281,7 +31280,6 @@ try {
       };
       if (newCheckboxOptions[checkboxValue] === undefined) {
         newCheckboxOptions[checkboxValue] = false;
-        console.log(checkboxValue);
       } else {
         newCheckboxOptions[checkboxValue] = !newCheckboxOptions[checkboxValue];
       }
@@ -31289,13 +31287,12 @@ try {
       updateCheckboxOptions(newCheckboxOptions);
       queryUpdater(originalQuery + whereClause);
     }
-    console.log(checkboxOptions);
     return (
       /*#__PURE__*/_reactDefault.default.createElement("form", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55,
+          lineNumber: 52,
           columnNumber: 9
         }
       }, speciesCategories.map(function (categoryLine) {
@@ -31304,7 +31301,7 @@ try {
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 58,
+              lineNumber: 55,
               columnNumber: 21
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -31318,7 +31315,7 @@ try {
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 59,
+              lineNumber: 56,
               columnNumber: 25
             }
           }), /*#__PURE__*/_reactDefault.default.createElement("label", {
@@ -31326,14 +31323,14 @@ try {
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 61,
+              lineNumber: 58,
               columnNumber: 25
             }
           }, categoryLine.Category + " (" + categoryLine.amnt + " species)"), /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: this,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 61,
+              lineNumber: 58,
               columnNumber: 132
             }
           }))
