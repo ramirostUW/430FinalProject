@@ -22,6 +22,12 @@ const Checkboxes = (props) => {
             amnt DESC;`
     );
 
+    let maxCategoryStringLength = 0;
+    speciesCategories.forEach(function(categoryLine){
+        if (categoryLine.Category.length > maxCategoryStringLength)
+            maxCategoryStringLength = categoryLine.Category.length;
+    });
+
     const [checkboxOptions, updateCheckboxOptions] = useState({ });
 
     function addQueryWhereClause(checkboxOptions){
@@ -53,11 +59,30 @@ const Checkboxes = (props) => {
     return (
         <form>
             {speciesCategories.map(function (categoryLine) {
+                let leftrightpadding = (maxCategoryStringLength - categoryLine.Category.length + 5) + "px";
+                /*
+                , 
+                    paddingLeft=(leftrightpadding + "px"), paddingRight=(leftrightpadding + "px")
+                */
+               /*
+                , 
+                    paddingLeft:leftrightpadding, paddingRight:leftrightpadding
+                */
+               /*
+               style={{padding: "10px",  display : 'inline-block', 
+                    paddingLeft:leftrightpadding, paddingRight:leftrightpadding}}
+               */
+              /*
+                <div style={{padding: "10px",  display : 'inline-block', 
+                    paddingLeft:leftrightpadding, paddingRight:leftrightpadding}} >
+              */
                 return (
-                    <div style={{padding: "10px", display : 'inline-block'}} >
-                        <input type="checkbox" id={categoryLine.Category} key={categoryLine.Category} defaultChecked="true" color="white"
+                    <div style={{padding: "10px",  display : 'inline-block', 
+                    paddingLeft:leftrightpadding, paddingRight:leftrightpadding}} >
+                        <input type="checkbox" id={categoryLine.Category} style={{verticalAlign:"left"}}
+                            key={categoryLine.Category} defaultChecked="true" color="white"
                             name={categoryLine.Category} value={categoryLine.Category} onClick={clickfunction} />
-                        <label for={categoryLine.Category} style={{color: "#e0e0e0"}}>
+                        <label for={categoryLine.Category} style={{color: "#e0e0e0", verticalAlign:"left"}}>
                             {categoryLine.Category + " (" + categoryLine.amnt + " species)"}
                         </label><br />
                     </div>

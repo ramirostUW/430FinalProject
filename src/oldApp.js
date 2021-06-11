@@ -3,7 +3,6 @@ import  {Route, Link, Switch, Redirect, NavLink } from 'react-router-dom';
 import { useParams } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Checkboxes from './Checkboxes';
-import Cards from './Cards';
 import { useFetch } from "./hooks/useFetch";
 import { useFetchSQL } from "./hooks/useFetchSQL";
 import './app.css';
@@ -19,9 +18,21 @@ const App = () => {
   );
   console.log(parksData);
   console.log(speciesData);
+
+
+  function getParkCode(parkName) {
+     for (var i = 0; i < parksData.length; i++){
+        if (parksData[i]["Park Name"] == parkName) {
+          var url = "https://www.nps.gov/" + parksData[i]["Park Code"] + "/index.htm";
+          console.log("hi")
+          return (
+            <a href={url} className="btn" id="link">Link to Park</a>
+          )
+       }
+    }
+  }
   
   const datasample = speciesData//.slice(10000, 10020);
-  
   function searchfunction() {
     const [searchTerm, setSearchTerm] = React.useState("");
     const [searchResults, setSearchResults] = React.useState([]);
@@ -54,7 +65,28 @@ const App = () => {
       </div>
       <SearchBar/>
       <Checkboxes  queryChange={changeSpeciesDataQuery} originalQuery={initialSpeciesquery}/>
-      <Cards datasample={datasample} parksData={parksData}/>
+      <div id="col">
+        <div id="row">
+          {datasample.map((sample, index) => {
+            return <div className="card" style={{ width: "20%" }}>
+              <div className="card-body" >
+                <h5 className="card-title">{sample["Common_Names"]}</h5>
+                <p className="card-text">
+                   <b>Scientific Name:</b> {sample["Scientific_Name"]}
+                   <br></br>
+                   <b>Where:</b> {sample["Park_Name"]}
+                   <br></br>
+                   <b>Abundance:</b> {sample["Abundance"]}
+                   <br></br>
+                </p>
+                {getParkCode(sample["Park_Name"])}
+                
+              </div>
+            </div>
+          })}
+
+        </div>
+      </div>
     </div>
   );
 };
