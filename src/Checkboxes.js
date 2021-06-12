@@ -9,8 +9,9 @@ import './app.css';
 
 const Checkboxes = (props) => {
 
-    let queryUpdater = props.queryChange;
-    let originalQuery = props.originalQuery;
+    let checkboxOptions = props.checkboxOptions;
+    let updateCheckboxOptions = props.updateCheckboxOptions;
+    let refreshWhereClause = props.refreshWhereClause;
 
     const [speciesCategories, speciesCategoriesLoading] = useFetchSQL(
         `Select 
@@ -29,18 +30,7 @@ const Checkboxes = (props) => {
             maxCategoryStringLength = categoryLine.Category.length;
     });
 
-    const [checkboxOptions, updateCheckboxOptions] = useState({ });
-
-    function addQueryWhereClause(checkboxOptions){
-        let whereClause = " Where 1=1";
-        Object.keys(checkboxOptions).forEach(function(category){
-            if(checkboxOptions[category] === false)
-            {
-                whereClause = whereClause + " AND category != \'" + category +"\'";
-            }
-        })
-        return whereClause;
-    }
+    //const [checkboxOptions, updateCheckboxOptions] = useState({ });
  
     function clickfunction(event) {
         let checkboxValue = event.target.value;
@@ -53,9 +43,8 @@ const Checkboxes = (props) => {
         {
             newCheckboxOptions[checkboxValue] = !newCheckboxOptions[checkboxValue];
         }
-        let whereClause = addQueryWhereClause(newCheckboxOptions);
+        refreshWhereClause(newCheckboxOptions, undefined);
         updateCheckboxOptions(newCheckboxOptions);
-        queryUpdater(originalQuery + whereClause);
     }
     return (
         <div>

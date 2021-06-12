@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Route, Link, Switch, Redirect, NavLink } from 'react-router-dom';
 import { useParams } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,15 +12,46 @@ import load from 'url:./imgs/load.gif';
 
 
 const Cards = (props) => {
-    //<Cards datasample={datasample} parksData={parksData}/>
-    //https://www.dropbox.com/s/c19vm7ttdpek8qr/loading-buffering.gif?dl=1
+    let firstCardIndex = props.firstCardIndex;
+    let setfirstCardIndex = props.setfirstCardIndex;
+    let cardsPerPage = props.cardsPerPage;
+    let setCardsPerPage = props.setCardsPerPage;
+    let refreshWhereClause = props.refreshWhereClause;
+
+    let [pageLengthInput, setPageLengthInput] = useState(50);
+
     let datasample = props.datasample;
     let loading = props.loading;
     let parksData = props.parksData;
     let dataChunks = chunk(datasample, 3);
 
 
-    console.log("dataChunks", dataChunks);
+    /*
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+        a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+        .previous {
+        background-color: #f1f1f1;
+        color: black;
+        }
+
+        .next {
+        background-color: #04AA6D;
+        color: white;
+        }
+
+        .round {
+        border-radius: 50%;
+        }
+    */
     function getParkCode(parkName) {
         for (var i = 0; i < parksData.length; i++) {
             if (parksData[i]["Park Name"] == parkName) {
@@ -34,8 +65,7 @@ const Cards = (props) => {
 
     const rows = dataChunks.map((dataChunk, index) => {
         const dataCols = dataChunk.map((sample, index) => {
-            if(sample["Abundance"] === "NULL")
-            {
+            if (sample["Abundance"] === "NULL") {
                 sample["Abundance"] = "Unknown";
             }
             return (
@@ -60,35 +90,75 @@ const Cards = (props) => {
         return <Row key={index}>{dataCols}</Row>
     });
 
-    return <Container>
-        {loading && <img src={load} style={{ margin: "15px" }}
-            alt="Loading checkboxes" width="75" height="75" />}
-        {!loading && rows}
-    </Container>
-    /*
-    let originalReturnVal = (
-        <div id="col">
-            <div id="row">
-                {datasample.map((sample, index) => {
-                    return <div className="card" style={{ width: "20%" }}>
-                        <div className="card-body" >
-                            <h5 className="card-title">{sample["Common_Names"]}</h5>
-                            <p className="card-text">
-                                <b>Scientific Name:</b> {sample["Scientific_Name"]}
-                                <br></br>
-                                <b>Where:</b> {sample["Park_Name"]}
-                                <br></br>
-                                <b>Abundance:</b> {sample["Abundance"]}
-                                <br></br>
-                            </p>
-                            {getParkCode(sample["Park_Name"])}
-                        </div>
-                    </div>
-                })}
+    let divStyle = { display: "inline-block", textAlign: "left", marginTop: "10px" }
+    if (loading) {
+        divStyle = undefined
+    }
+
+    function changePageLength(event)
+    {
+        let newPageLength = parseInt(pageLengthInput);
+        if (pageLengthInput!="" && !isNaN(newPageLength))
+        {
+            setCardsPerPage(newPageLength);
+            setfirstCardIndex(1);
+            refreshWhereClause(undefined, undefined, undefined, newPageLength);
+        }
+
+    }
+    function updatePagelengthField(event)
+    {
+        let formInput = event.target.value;
+        setPageLengthInput(formInput);
+
+    }
+
+    function previousButton()
+    {
+        let min = 1; //number of species in table
+        let newFirstIndex= firstCardIndex - cardsPerPage;
+        if(newFirstIndex >= min)
+        {
+            setfirstCardIndex(newFirstIndex);
+            refreshWhereClause(undefined, undefined, newFirstIndex);
+        }
+        
+    }
+    function nextButton()
+    {
+        let max = 119248; //number of species in table
+        let newFirstIndex= firstCardIndex + cardsPerPage;
+        if(newFirstIndex <= max)
+        {
+            setfirstCardIndex(newFirstIndex);
+            refreshWhereClause(undefined, undefined, newFirstIndex);
+        }
+        
+    }
+    let lowerBound = firstCardIndex;
+    let upperBound = firstCardIndex + cardsPerPage - 1;
+    let entriesString = "displaying Entries #" + lowerBound +"-" + upperBound
+    return (
+        <div style={{ marginTop: "10px" }}>
+            <div>
+                {!loading && <button onClick={previousButton}>{'\u2B05'} Previous</button>}
+                {" "}
+                {!loading && <button onClick={nextButton}>Next {'\u27A1'}</button>}
+                {!loading && <label style={{ color: "#e0e0e0" }} >{entriesString}</label>}
+
             </div>
+            <br />
+            {!loading && <div>
+                <button onClick={changePageLength}>Set # of entries per page to: </button>
+                 <input size="5" onChange={updatePagelengthField}></input>
+            </div>}
+            <Container>
+                {loading && <img src={load} style={{ margin: "15px" }}
+                    alt="Loading checkboxes" width="75" height="75" />}
+                {!loading && rows}
+            </Container>
         </div>
     )
-    */
 
 }
 

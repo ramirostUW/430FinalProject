@@ -49,6 +49,8 @@ WITH myTable as(
       rownum between 1 and 50
    AND category != 'Mammal'
 
-Select Distinct Category from Species;
+Select count(*) from Species;
+
+Select Top 50 * from Species WHERE (CHARINDEX(LOWER('Acadia'),LOWER([Park Name])) > 0)
 
 Select Top 50 * from Species Where 1=1 AND category != 'Nonvascular Plant'

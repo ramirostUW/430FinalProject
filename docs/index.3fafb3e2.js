@@ -26280,101 +26280,95 @@ try {
   _parcelHelpers.defineInteropFlag(exports);
   var _react = require("react");
   var _reactDefault = _parcelHelpers.interopDefault(_react);
-  require('react-router-dom');
-  require('react-router');
   require('bootstrap/dist/css/bootstrap.min.css');
   var _Checkboxes = require('./Checkboxes');
   var _CheckboxesDefault = _parcelHelpers.interopDefault(_Checkboxes);
+  var _SearchBar = require('./SearchBar');
+  var _SearchBarDefault = _parcelHelpers.interopDefault(_SearchBar);
   var _Cards = require('./Cards');
   var _CardsDefault = _parcelHelpers.interopDefault(_Cards);
-  require("./hooks/useFetch");
   var _hooksUseFetchSQL = require("./hooks/useFetchSQL");
   require('./app.css');
-  var _jsxFileName = "/mnt/c/info430/430FinalProject/src/App.js", _s2 = $RefreshSig$();
+  var _jsxFileName = "/mnt/c/info430/430FinalProject/src/App.js", _s = $RefreshSig$();
   const App = () => {
-    _s2();
-    var _s = $RefreshSig$();
-    const initialSpeciesquery = "Select Top 50 * from Species";
-    /*const initialSpeciesquery = `
+    _s();
+    // const initialSpeciesquery = "Select Top 50 * from Species";
+    const initialSpeciesquery = `
     WITH myTable as(
-    Select
-    *,
-    ROW_NUMBER() OVER(
-    Order by Species_ID ASC
-    ) as rownum
-    from
-    Species
+      Select
+          *, 
+          ROW_NUMBER() OVER(
+              Order by Species_ID ASC
+          ) as rownum 
+      from 
+          Species
     )
-    Select
-    *
-    from
-    myTable
+    Select 
+      * 
+    from 
+      myTable 
     WHERE
-    rownum between 1 and 50
-    `;*/
+      rownum between 1 and 50
+  `;
+    const [checkboxOptions, updateCheckboxOptions] = _react.useState({});
+    const [searchResults, setSearchResults] = _react.useState(undefined);
+    const [cardsPerPage, setCardsPerPage] = _react.useState(50);
+    const [firstCardIndex, setfirstCardIndex] = _react.useState(1);
     const [speciesData, speciesLoading, changeSpeciesDataQuery] = _hooksUseFetchSQL.useFetchSQL(initialSpeciesquery);
-    console.log(changeSpeciesDataQuery);
     const [parksData, parksLoading] = _hooksUseFetchSQL.useFetchSQL("Select * from Parks");
-    console.log(parksData);
-    console.log(speciesData);
+    function refreshWhereClause(checkboxConditions, searchBarTerms, newfirstCardIndex, newcardsPerPage, blankSearchBar) {
+      if (searchBarTerms === undefined) {
+        searchBarTerms = searchResults;
+      }
+      if (checkboxConditions === undefined) {
+        checkboxConditions = checkboxOptions;
+      }
+      let whereClause = " Where 1=1";
+      if (searchBarTerms != undefined && !blankSearchBar) {
+        whereClause = " WHERE (CHARINDEX(LOWER(\'" + searchBarTerms + "\'),LOWER(Park_Name)) > 0)";
+      }
+      Object.keys(checkboxConditions).forEach(function (category) {
+        if (checkboxConditions[category] === false) {
+          whereClause = whereClause + " AND category != \'" + category + "\'";
+        }
+      });
+      // let newQuery = query + whereClause;
+      if (newfirstCardIndex === undefined) {
+        newfirstCardIndex = firstCardIndex;
+      }
+      if (newcardsPerPage === undefined) {
+        newcardsPerPage = cardsPerPage;
+      }
+      let lowerBound = newfirstCardIndex;
+      let upperBound = newfirstCardIndex + newcardsPerPage - 1;
+      let newQuery = `
+    WITH myTable as(
+      Select
+          *, 
+          ROW_NUMBER() OVER(
+              Order by Species_ID ASC
+          ) as rownum 
+      from 
+          Species
+      ` + whereClause + `
+    )
+    Select 
+      * 
+    from 
+      myTable 
+    WHERE
+      rownum between ` + lowerBound + ` and ` + upperBound + `
+    `;
+      changeSpeciesDataQuery(newQuery);
+    }
     const datasample = speciesData;
     // .slice(10000, 10020);
-    function searchfunction() {
-      _s();
-      const [searchTerm, setSearchTerm] = _reactDefault.default.useState("");
-      const [searchResults, setSearchResults] = _reactDefault.default.useState([]);
-      console.log("These are the search results" + searchResults);
-      const handleChange = event => {
-        setSearchTerm(event.target.value);
-      };
-      _reactDefault.default.useEffect(() => {
-        const results = datasample.filter(park => park.toLowerCase().includes(searchTerm));
-        setSearchResults(results);
-      }, [searchTerm]);
-      return (
-        /*#__PURE__*/_reactDefault.default.createElement("div", {
-          className: "App",
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 55,
-            columnNumber: 7
-          }
-        }, /*#__PURE__*/_reactDefault.default.createElement("input", {
-          type: "text",
-          placeholder: "Search",
-          value: searchTerm,
-          onChange: handleChange,
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 56,
-            columnNumber: 9
-          }
-        }), /*#__PURE__*/_reactDefault.default.createElement("ul", {
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 57,
-            columnNumber: 9
-          }
-        }, searchResults.map(item => /*#__PURE__*/_reactDefault.default.createElement("li", {
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 59,
-            columnNumber: 13
-          }
-        }, item))))
-      );
-    }
-    _s(searchfunction, "vFVq2CqhFvuwfi/Qub5hbBnO1R0=");
     return (
       /*#__PURE__*/_reactDefault.default.createElement("div", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 67,
+          lineNumber: 96,
           columnNumber: 5
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -26388,113 +26382,241 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 68,
+          lineNumber: 97,
           columnNumber: 7
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("h1", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 69,
+          lineNumber: 98,
           columnNumber: 9
         }
       }, "Info 430 Final Project"), /*#__PURE__*/_reactDefault.default.createElement("p", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 70,
+          lineNumber: 99,
           columnNumber: 9
         }
-      }, "By: Michael, Olivia, Pranav, and Ramiro")), /*#__PURE__*/_reactDefault.default.createElement(SearchBar, {
+      }, "By: Michael, Olivia, Pranav, and Ramiro")), /*#__PURE__*/_reactDefault.default.createElement(_SearchBarDefault.default, {
+        searchResults: searchResults,
+        setSearchResults: setSearchResults,
+        refreshWhereClause: refreshWhereClause,
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 72,
+          lineNumber: 101,
           columnNumber: 7
         }
       }), /*#__PURE__*/_reactDefault.default.createElement(_CheckboxesDefault.default, {
-        queryChange: changeSpeciesDataQuery,
-        originalQuery: initialSpeciesquery,
+        checkboxOptions: checkboxOptions,
+        updateCheckboxOptions: updateCheckboxOptions,
+        refreshWhereClause: refreshWhereClause,
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 73,
+          lineNumber: 102,
           columnNumber: 7
         }
       }), /*#__PURE__*/_reactDefault.default.createElement(_CardsDefault.default, {
+        cardsPerPage: cardsPerPage,
+        setCardsPerPage: setCardsPerPage,
+        firstCardIndex: firstCardIndex,
+        setfirstCardIndex: setfirstCardIndex,
         datasample: datasample,
         parksData: parksData,
+        refreshWhereClause: refreshWhereClause,
         loading: speciesLoading,
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 74,
+          lineNumber: 104,
           columnNumber: 7
         }
       }))
     );
   };
-  _s2(App, "3EFw9GkXecgTPoPC1ShpUL0F7F0=", false, function () {
+  _s(App, "Sy4zAp1XM8W2Wyhj6R4GeJ1Tp1A=", false, function () {
     return [_hooksUseFetchSQL.useFetchSQL, _hooksUseFetchSQL.useFetchSQL];
   });
   _c = App;
-  const SearchBar = () => /*#__PURE__*/_reactDefault.default.createElement("form", {
-    action: "/",
-    method: "get",
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 80,
-      columnNumber: 3
-    }
-  }, /*#__PURE__*/_reactDefault.default.createElement("label", {
-    htmlFor: "header-search",
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 81,
-      columnNumber: 5
-    }
-  }, /*#__PURE__*/_reactDefault.default.createElement("span", {
-    className: "visually-hidden",
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 82,
-      columnNumber: 7
-    }
-  }, "Search parks")), /*#__PURE__*/_reactDefault.default.createElement("input", {
-    type: "text",
-    id: "header-search",
-    placeholder: "Search parks",
-    name: "s",
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 84,
-      columnNumber: 5
-    }
-  }), /*#__PURE__*/_reactDefault.default.createElement("button", {
-    type: "submit",
-    __self: undefined,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 90,
-      columnNumber: 7
-    }
-  }, "Search"));
-  _c2 = SearchBar;
   exports.default = App;
-  var _c, _c2;
+  var _c;
   $RefreshReg$(_c, "App");
-  $RefreshReg$(_c2, "SearchBar");
   helpers.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-router-dom":"1PMSK","react-router":"3v97x","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./Checkboxes":"14f0m","./Cards":"1v6ha","./hooks/useFetch":"5YU3r","./hooks/useFetchSQL":"56OKW","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"1PMSK":[function(require,module,exports) {
+},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./Checkboxes":"14f0m","./Cards":"1v6ha","./hooks/useFetchSQL":"56OKW","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","./SearchBar":"59Dpo"}],"5GTF8":[function() {},{}],"14f0m":[function(require,module,exports) {
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  require('react-router-dom');
+  require('react-router');
+  require('bootstrap/dist/css/bootstrap.min.css');
+  require("./hooks/useFetch");
+  var _hooksUseFetchSQL = require("./hooks/useFetchSQL");
+  var _urlImgsLoadGif = require('url:./imgs/load.gif');
+  var _urlImgsLoadGifDefault = _parcelHelpers.interopDefault(_urlImgsLoadGif);
+  require('./app.css');
+  var _jsxFileName = "/mnt/c/info430/430FinalProject/src/Checkboxes.js", _s = $RefreshSig$();
+  const Checkboxes = props => {
+    _s();
+    let checkboxOptions = props.checkboxOptions;
+    let updateCheckboxOptions = props.updateCheckboxOptions;
+    let refreshWhereClause = props.refreshWhereClause;
+    const [speciesCategories, speciesCategoriesLoading] = _hooksUseFetchSQL.useFetchSQL(`Select 
+            Category, count(*) as amnt
+        from 
+            Species
+        Group By
+            Category
+        ORDER BY
+            amnt DESC;`);
+    let maxCategoryStringLength = 0;
+    speciesCategories.forEach(function (categoryLine) {
+      if (categoryLine.Category.length > maxCategoryStringLength) maxCategoryStringLength = categoryLine.Category.length;
+    });
+    // const [checkboxOptions, updateCheckboxOptions] = useState({ });
+    function clickfunction(event) {
+      let checkboxValue = event.target.value;
+      let newCheckboxOptions = {
+        ...checkboxOptions
+      };
+      if (newCheckboxOptions[checkboxValue] === undefined) {
+        newCheckboxOptions[checkboxValue] = false;
+      } else {
+        newCheckboxOptions[checkboxValue] = !newCheckboxOptions[checkboxValue];
+      }
+      refreshWhereClause(newCheckboxOptions, undefined);
+      updateCheckboxOptions(newCheckboxOptions);
+    }
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 50,
+          columnNumber: 9
+        }
+      }, speciesCategoriesLoading && /*#__PURE__*/_reactDefault.default.createElement("img", {
+        src: _urlImgsLoadGifDefault.default,
+        style: {
+          margin: "15px"
+        },
+        alt: "Loading checkboxes",
+        width: "75",
+        height: "75",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 51,
+          columnNumber: 39
+        }
+      }), !speciesCategoriesLoading && /*#__PURE__*/_reactDefault.default.createElement("form", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 53,
+          columnNumber: 39
+        }
+      }, speciesCategories.map(function (categoryLine) {
+        let leftrightpadding = maxCategoryStringLength - categoryLine.Category.length + 5 + "px";
+        /*
+        ,
+        paddingLeft=(leftrightpadding + "px"), paddingRight=(leftrightpadding + "px")
+        */
+        /*
+        ,
+        paddingLeft:leftrightpadding, paddingRight:leftrightpadding
+        */
+        /*
+        style={{padding: "10px",  display : 'inline-block',
+        paddingLeft:leftrightpadding, paddingRight:leftrightpadding}}
+        */
+        /*
+        <div style={{padding: "10px",  display : 'inline-block',
+        paddingLeft:leftrightpadding, paddingRight:leftrightpadding}} >
+        */
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", {
+            style: {
+              padding: "10px",
+              display: 'inline-block',
+              paddingLeft: leftrightpadding,
+              paddingRight: leftrightpadding
+            },
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 74,
+              columnNumber: 21
+            }
+          }, /*#__PURE__*/_reactDefault.default.createElement("input", {
+            type: "checkbox",
+            id: categoryLine.Category,
+            style: {
+              verticalAlign: "left"
+            },
+            key: categoryLine.Category,
+            defaultChecked: "true",
+            color: "white",
+            name: categoryLine.Category,
+            value: categoryLine.Category,
+            onClick: clickfunction,
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 76,
+              columnNumber: 25
+            }
+          }), /*#__PURE__*/_reactDefault.default.createElement("label", {
+            for: categoryLine.Category,
+            style: {
+              color: "#e0e0e0",
+              verticalAlign: "left"
+            },
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 79,
+              columnNumber: 25
+            }
+          }, categoryLine.Category + " (" + categoryLine.amnt + " species)"), /*#__PURE__*/_reactDefault.default.createElement("br", {
+            __self: this,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 81,
+              columnNumber: 33
+            }
+          }))
+        );
+      })))
+    );
+  };
+  _s(Checkboxes, "d5AuVOeJuMtbgZ0TNDFJZHQbSdY=", false, function () {
+    return [_hooksUseFetchSQL.useFetchSQL];
+  });
+  _c = Checkboxes;
+  exports.default = Checkboxes;
+  var _c;
+  $RefreshReg$(_c, "Checkboxes");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","react-router-dom":"1PMSK","react-router":"3v97x","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","./hooks/useFetchSQL":"56OKW","url:./imgs/load.gif":"1KfXx","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"1PMSK":[function(require,module,exports) {
 "use strict";
 if ("development" === "production") {
   module.exports = require("./cjs/react-router-dom.min.js");
@@ -30430,182 +30552,7 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 
 module.exports = hoistNonReactStatics;
 
-},{"react-is":"68QIU"}],"5GTF8":[function() {},{}],"14f0m":[function(require,module,exports) {
-var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  var _react = require("react");
-  var _reactDefault = _parcelHelpers.interopDefault(_react);
-  require('react-router-dom');
-  require('react-router');
-  require('bootstrap/dist/css/bootstrap.min.css');
-  require("./hooks/useFetch");
-  var _hooksUseFetchSQL = require("./hooks/useFetchSQL");
-  var _urlImgsLoadGif = require('url:./imgs/load.gif');
-  var _urlImgsLoadGifDefault = _parcelHelpers.interopDefault(_urlImgsLoadGif);
-  require('./app.css');
-  var _jsxFileName = "/mnt/c/info430/430FinalProject/src/Checkboxes.js", _s = $RefreshSig$();
-  const Checkboxes = props => {
-    _s();
-    let queryUpdater = props.queryChange;
-    let originalQuery = props.originalQuery;
-    const [speciesCategories, speciesCategoriesLoading] = _hooksUseFetchSQL.useFetchSQL(`Select 
-            Category, count(*) as amnt
-        from 
-            Species
-        Group By
-            Category
-        ORDER BY
-            amnt DESC;`);
-    let maxCategoryStringLength = 0;
-    speciesCategories.forEach(function (categoryLine) {
-      if (categoryLine.Category.length > maxCategoryStringLength) maxCategoryStringLength = categoryLine.Category.length;
-    });
-    const [checkboxOptions, updateCheckboxOptions] = _react.useState({});
-    function addQueryWhereClause(checkboxOptions) {
-      let whereClause = " Where 1=1";
-      Object.keys(checkboxOptions).forEach(function (category) {
-        if (checkboxOptions[category] === false) {
-          whereClause = whereClause + " AND category != \'" + category + "\'";
-        }
-      });
-      return whereClause;
-    }
-    function clickfunction(event) {
-      let checkboxValue = event.target.value;
-      let newCheckboxOptions = {
-        ...checkboxOptions
-      };
-      if (newCheckboxOptions[checkboxValue] === undefined) {
-        newCheckboxOptions[checkboxValue] = false;
-      } else {
-        newCheckboxOptions[checkboxValue] = !newCheckboxOptions[checkboxValue];
-      }
-      let whereClause = addQueryWhereClause(newCheckboxOptions);
-      updateCheckboxOptions(newCheckboxOptions);
-      queryUpdater(originalQuery + whereClause);
-    }
-    return (
-      /*#__PURE__*/_reactDefault.default.createElement("div", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 61,
-          columnNumber: 9
-        }
-      }, speciesCategoriesLoading && /*#__PURE__*/_reactDefault.default.createElement("img", {
-        src: _urlImgsLoadGifDefault.default,
-        style: {
-          margin: "15px"
-        },
-        alt: "Loading checkboxes",
-        width: "75",
-        height: "75",
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 62,
-          columnNumber: 39
-        }
-      }), !speciesCategoriesLoading && /*#__PURE__*/_reactDefault.default.createElement("form", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 64,
-          columnNumber: 39
-        }
-      }, speciesCategories.map(function (categoryLine) {
-        let leftrightpadding = maxCategoryStringLength - categoryLine.Category.length + 5 + "px";
-        /*
-        ,
-        paddingLeft=(leftrightpadding + "px"), paddingRight=(leftrightpadding + "px")
-        */
-        /*
-        ,
-        paddingLeft:leftrightpadding, paddingRight:leftrightpadding
-        */
-        /*
-        style={{padding: "10px",  display : 'inline-block',
-        paddingLeft:leftrightpadding, paddingRight:leftrightpadding}}
-        */
-        /*
-        <div style={{padding: "10px",  display : 'inline-block',
-        paddingLeft:leftrightpadding, paddingRight:leftrightpadding}} >
-        */
-        return (
-          /*#__PURE__*/_reactDefault.default.createElement("div", {
-            style: {
-              padding: "10px",
-              display: 'inline-block',
-              paddingLeft: leftrightpadding,
-              paddingRight: leftrightpadding
-            },
-            __self: this,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 85,
-              columnNumber: 21
-            }
-          }, /*#__PURE__*/_reactDefault.default.createElement("input", {
-            type: "checkbox",
-            id: categoryLine.Category,
-            style: {
-              verticalAlign: "left"
-            },
-            key: categoryLine.Category,
-            defaultChecked: "true",
-            color: "white",
-            name: categoryLine.Category,
-            value: categoryLine.Category,
-            onClick: clickfunction,
-            __self: this,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 87,
-              columnNumber: 25
-            }
-          }), /*#__PURE__*/_reactDefault.default.createElement("label", {
-            for: categoryLine.Category,
-            style: {
-              color: "#e0e0e0",
-              verticalAlign: "left"
-            },
-            __self: this,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 90,
-              columnNumber: 25
-            }
-          }, categoryLine.Category + " (" + categoryLine.amnt + " species)"), /*#__PURE__*/_reactDefault.default.createElement("br", {
-            __self: this,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 92,
-              columnNumber: 33
-            }
-          }))
-        );
-      })))
-    );
-  };
-  _s(Checkboxes, "olm1+wAKwws5szd5CM9WHiwCyzw=", false, function () {
-    return [_hooksUseFetchSQL.useFetchSQL];
-  });
-  _c = Checkboxes;
-  exports.default = Checkboxes;
-  var _c;
-  $RefreshReg$(_c, "Checkboxes");
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"react":"3b2NM","react-router-dom":"1PMSK","react-router":"3v97x","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./hooks/useFetch":"5YU3r","./hooks/useFetchSQL":"56OKW","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","url:./imgs/load.gif":"1KfXx"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
+},{"react-is":"68QIU"}],"5GTF8":[function() {},{}],"5YU3r":[function(require,module,exports) {
 var helpers = require("../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -31305,7 +31252,6 @@ try {
     _s(initializeQuery, "OD7bBpZva5O2jO+Puf00hKivP7c=");
     initializeQuery(query);
     function getNewQuery(newQuery) {
-      console.log(newQuery);
       setData([]);
       setLoading(true);
       let queryURL = "https://info430sp21group2.tk/sqlServerAPI/sqlQuery?query=" + encodeURIComponent(newQuery);
@@ -31325,7 +31271,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"d3-fetch":"7Gs6I","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"4RKET":[function() {},{}],"1KfXx":[function(require,module,exports) {
+},{"d3-fetch":"7Gs6I","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"1KfXx":[function(require,module,exports) {
 module.exports = require('./bundle-url').getBundleURL() + "load.db1f475d.gif"
 },{"./bundle-url":"3seVR"}],"3seVR":[function(require,module,exports) {
 "use strict";
@@ -31373,7 +31319,7 @@ function getOrigin(url) {
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
-},{}],"1v6ha":[function(require,module,exports) {
+},{}],"4RKET":[function() {},{}],"1v6ha":[function(require,module,exports) {
 var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -31394,15 +31340,45 @@ try {
   require('./app.css');
   var _urlImgsLoadGif = require('url:./imgs/load.gif');
   var _urlImgsLoadGifDefault = _parcelHelpers.interopDefault(_urlImgsLoadGif);
-  var _jsxFileName = "/mnt/c/info430/430FinalProject/src/Cards.js";
+  var _jsxFileName = "/mnt/c/info430/430FinalProject/src/Cards.js", _s = $RefreshSig$();
   const Cards = props => {
-    // <Cards datasample={datasample} parksData={parksData}/>
-    // https://www.dropbox.com/s/c19vm7ttdpek8qr/loading-buffering.gif?dl=1
+    _s();
+    let firstCardIndex = props.firstCardIndex;
+    let setfirstCardIndex = props.setfirstCardIndex;
+    let cardsPerPage = props.cardsPerPage;
+    let setCardsPerPage = props.setCardsPerPage;
+    let refreshWhereClause = props.refreshWhereClause;
+    let [pageLengthInput, setPageLengthInput] = _react.useState(50);
     let datasample = props.datasample;
     let loading = props.loading;
     let parksData = props.parksData;
     let dataChunks = _lodash.chunk(datasample, 3);
-    console.log("dataChunks", dataChunks);
+    /*
+    a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    }
+    
+    a:hover {
+    background-color: #ddd;
+    color: black;
+    }
+    
+    .previous {
+    background-color: #f1f1f1;
+    color: black;
+    }
+    
+    .next {
+    background-color: #04AA6D;
+    color: white;
+    }
+    
+    .round {
+    border-radius: 50%;
+    }
+    */
     function getParkCode(parkName) {
       for (var i = 0; i < parksData.length; i++) {
         if (parksData[i]["Park Name"] == parkName) {
@@ -31415,7 +31391,7 @@ try {
               __self: this,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 29,
+                lineNumber: 60,
                 columnNumber: 21
               }
             }, "Link to Park")
@@ -31435,7 +31411,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 42,
+              lineNumber: 72,
               columnNumber: 17
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -31443,7 +31419,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 43,
+              lineNumber: 73,
               columnNumber: 21
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -31451,7 +31427,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 44,
+              lineNumber: 74,
               columnNumber: 25
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("h5", {
@@ -31459,7 +31435,7 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 45,
+              lineNumber: 75,
               columnNumber: 29
             }
           }, sample["Common_Names"]), /*#__PURE__*/_reactDefault.default.createElement("p", {
@@ -31467,49 +31443,49 @@ try {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 46,
+              lineNumber: 76,
               columnNumber: 29
             }
           }, /*#__PURE__*/_reactDefault.default.createElement("b", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 47,
+              lineNumber: 77,
               columnNumber: 33
             }
           }, "Scientific Name:"), " ", sample["Scientific_Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 48,
+              lineNumber: 78,
               columnNumber: 33
             }
           }), /*#__PURE__*/_reactDefault.default.createElement("b", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 49,
+              lineNumber: 79,
               columnNumber: 33
             }
           }, "Where:"), " ", sample["Park_Name"], /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 50,
+              lineNumber: 80,
               columnNumber: 33
             }
           }), /*#__PURE__*/_reactDefault.default.createElement("b", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 51,
+              lineNumber: 81,
               columnNumber: 33
             }
           }, "Abundance:"), " ", sample["Abundance"], /*#__PURE__*/_reactDefault.default.createElement("br", {
             __self: undefined,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 52,
+              lineNumber: 82,
               columnNumber: 33
             }
           })), getParkCode(sample["Park_Name"]))))
@@ -31521,19 +31497,134 @@ try {
           __self: undefined,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 60,
+            lineNumber: 90,
             columnNumber: 16
           }
         }, dataCols)
       );
     });
+    let divStyle = {
+      display: "inline-block",
+      textAlign: "left",
+      marginTop: "10px"
+    };
+    if (loading) {
+      divStyle = undefined;
+    }
+    function changePageLength(event) {
+      let newPageLength = parseInt(pageLengthInput);
+      if (pageLengthInput != "" && !isNaN(newPageLength)) {
+        setCardsPerPage(newPageLength);
+        setfirstCardIndex(1);
+        refreshWhereClause(undefined, undefined, undefined, newPageLength);
+      }
+    }
+    function updatePagelengthField(event) {
+      let formInput = event.target.value;
+      setPageLengthInput(formInput);
+    }
+    function previousButton() {
+      let min = 1;
+      // number of species in table
+      let newFirstIndex = firstCardIndex - cardsPerPage;
+      if (newFirstIndex >= min) {
+        setfirstCardIndex(newFirstIndex);
+        refreshWhereClause(undefined, undefined, newFirstIndex);
+      }
+    }
+    function nextButton() {
+      let max = 119248;
+      // number of species in table
+      let newFirstIndex = firstCardIndex + cardsPerPage;
+      if (newFirstIndex <= max) {
+        setfirstCardIndex(newFirstIndex);
+        refreshWhereClause(undefined, undefined, newFirstIndex);
+      }
+    }
+    let lowerBound = firstCardIndex;
+    let upperBound = firstCardIndex + cardsPerPage - 1;
+    let entriesString = "displaying Entries #" + lowerBound + "-" + upperBound;
     return (
-      /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Container, {
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        style: {
+          marginTop: "10px"
+        },
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 63,
-          columnNumber: 12
+          lineNumber: 142,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 143,
+          columnNumber: 13
+        }
+      }, !loading && /*#__PURE__*/_reactDefault.default.createElement("button", {
+        onClick: previousButton,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 144,
+          columnNumber: 30
+        }
+      }, '\u2B05', " Previous"), " ", !loading && /*#__PURE__*/_reactDefault.default.createElement("button", {
+        onClick: nextButton,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 146,
+          columnNumber: 30
+        }
+      }, "Next ", '\u27A1'), !loading && /*#__PURE__*/_reactDefault.default.createElement("label", {
+        style: {
+          color: "#e0e0e0"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 147,
+          columnNumber: 30
+        }
+      }, entriesString)), /*#__PURE__*/_reactDefault.default.createElement("br", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 150,
+          columnNumber: 13
+        }
+      }), !loading && /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 151,
+          columnNumber: 26
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("button", {
+        onClick: changePageLength,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 152,
+          columnNumber: 17
+        }
+      }, "Set # of entries per page to: "), /*#__PURE__*/_reactDefault.default.createElement("input", {
+        size: "5",
+        onChange: updatePagelengthField,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 153,
+          columnNumber: 18
+        }
+      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Container, {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 155,
+          columnNumber: 13
         }
       }, loading && /*#__PURE__*/_reactDefault.default.createElement("img", {
         src: _urlImgsLoadGifDefault.default,
@@ -31546,12 +31637,13 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 64,
-          columnNumber: 21
+          lineNumber: 156,
+          columnNumber: 29
         }
-      }), !loading && rows)
+      }), !loading && rows))
     );
   };
+  _s(Cards, "pOANQXiCx0CCVSDxdvks8B94xis=");
   _c = Cards;
   exports.default = Cards;
   var _c;
@@ -31562,7 +31654,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-router-dom":"1PMSK","react-router":"3v97x","bootstrap/dist/css/bootstrap.min.css":"5GTF8","react-bootstrap":"4n7hB","lodash":"6kMIO","./Checkboxes":"14f0m","./hooks/useFetch":"5YU3r","./hooks/useFetchSQL":"56OKW","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","url:./imgs/load.gif":"1KfXx"}],"5GTF8":[function() {},{}],"4n7hB":[function(require,module,exports) {
+},{"react":"3b2NM","react-router-dom":"1PMSK","react-router":"3v97x","bootstrap/dist/css/bootstrap.min.css":"5GTF8","react-bootstrap":"4n7hB","lodash":"6kMIO","./Checkboxes":"14f0m","./hooks/useFetch":"5YU3r","./hooks/useFetchSQL":"56OKW","./app.css":"4RKET","url:./imgs/load.gif":"1KfXx","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5GTF8":[function() {},{}],"4n7hB":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -60803,6 +60895,119 @@ var define;
   }
 }).call(this);
 
-},{}],"4RKET":[function() {},{}],"4RKET":[function() {},{}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequire2d18")
+},{}],"4RKET":[function() {},{}],"4RKET":[function() {},{}],"59Dpo":[function(require,module,exports) {
+var helpers = require("../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require("react");
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  require('bootstrap/dist/css/bootstrap.min.css');
+  require('./app.css');
+  var _jsxFileName = "/mnt/c/info430/430FinalProject/src/SearchBar.js", _s = $RefreshSig$();
+  const SearchBar = props => {
+    _s();
+    // let searchTerm = props.searchTerm;
+    // let setSearchTerm = props.setSearchTerm;
+    const [searchTerm, setSearchTerm] = _reactDefault.default.useState("");
+    // const [searchResults, setSearchResults] = React.useState([]);
+    let searchResults = props.searchResults;
+    let setSearchResults = props.setSearchResults;
+    let refreshWhereClause = props.refreshWhereClause;
+    const handleChange = event => {
+      let input = event.target.value;
+      setSearchTerm(input);
+    };
+    const handleButton = () => {
+      if (searchTerm === "") {
+        setSearchResults(undefined);
+        refreshWhereClause(undefined, undefined, undefined, undefined, true);
+      } else {
+        refreshWhereClause(undefined, searchTerm);
+        setSearchResults(searchTerm);
+      }
+    };
+    let searchMade = searchResults != undefined;
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 38,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("form", {
+        action: "/",
+        method: "get",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 39,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("label", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 40,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("span", {
+        className: "visually-hidden",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41,
+          columnNumber: 17
+        }
+      }, "Search parks")), /*#__PURE__*/_reactDefault.default.createElement("input", {
+        type: "text",
+        id: "header-search",
+        placeholder: "Search parks",
+        name: "s",
+        onChange: handleChange,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 43,
+          columnNumber: 13
+        }
+      }), /*#__PURE__*/_reactDefault.default.createElement("button", {
+        type: "button",
+        onClick: handleButton,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 50,
+          columnNumber: 13
+        }
+      }, "Search")), searchMade && /*#__PURE__*/_reactDefault.default.createElement("p", {
+        style: {
+          color: "#e0e0e0"
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 52,
+          columnNumber: 24
+        }
+      }, "Showing search results for: \"", searchResults, "\""))
+    );
+  };
+  _s(SearchBar, "+YdqPTpSlp4r5CWiFEQiF/UjThM=");
+  _c = SearchBar;
+  exports.default = SearchBar;
+  var _c;
+  $RefreshReg$(_c, "SearchBar");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","bootstrap/dist/css/bootstrap.min.css":"5GTF8","./app.css":"4RKET","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f"}],"5GTF8":[function() {},{}],"4RKET":[function() {},{}]},["1j6wU","3Imd1","5rkFb"], "5rkFb", "parcelRequire2d18")
 
 //# sourceMappingURL=index.3fafb3e2.js.map
